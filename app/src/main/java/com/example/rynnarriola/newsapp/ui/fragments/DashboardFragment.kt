@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.rynnarriola.newsapp.R
+import com.example.rynnarriola.newsapp.adapter.TopHeadLinesAdapter
 import com.example.rynnarriola.newsapp.databinding.FragmentDashboardBinding
 
 class DashboardFragment: Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
+
 
     override fun onCreateView(
 
