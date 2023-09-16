@@ -1,6 +1,7 @@
 package com.example.rynnarriola.newsapp.di.components
 
 import com.example.rynnarriola.newsapp.NewsApplication
+import com.example.rynnarriola.newsapp.data.repository.NewsRepo
 import com.example.rynnarriola.newsapp.di.modules.ApplicationModule
 import dagger.Component
 import javax.inject.Singleton
@@ -10,5 +11,7 @@ import javax.inject.Singleton
 interface ApplicationComponent {
 
     fun inject(application: NewsApplication)
+
+    fun getNewsRepo(): NewsRepo
 
 }
