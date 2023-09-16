@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">NewsApp</string>
+
+    <string name="top_head_lines_title">Top Headlines</string>
+    <string name="news_sources_title">News Sources</string>
+    <string name="countries_title">Countries</string>
+    <string name="languages_title">Languages</string>
+    <string name="search_title">Search</string>
 </resources>

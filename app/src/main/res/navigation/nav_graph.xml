@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.rynnarriola.newsapp.ui.fragments.DashboardFragment"
+        android:label="DashboardFragment">
+        <action
+            android:id="@+id/action_dashboardFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_topHeadLinesFragment"
+            app:destination="@id/topHeadLinesFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_newsSourcesFragment"
+            app:destination="@id/newsSourcesFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_countriesFragment"
+            app:destination="@id/countriesFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_languagesFragment"
+            app:destination="@id/languagesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/countriesFragment"
+        android:name="com.example.rynnarriola.newsapp.ui.fragments.CountriesFragment"
+        android:label="CountriesFragment" />
+    <fragment
+        android:id="@+id/languagesFragment"
+        android:name="com.example.rynnarriola.newsapp.ui.fragments.LanguagesFragment"
+        android:label="LanguagesFragment" />
+    <fragment
+        android:id="@+id/newsSourcesFragment"
+        android:name="com.example.rynnarriola.newsapp.ui.fragments.NewsSourcesFragment"
+        android:label="NewsSourcesFragment" />
+    <fragment
+        android:id="@+id/topHeadLinesFragment"
+        android:name="com.example.rynnarriola.newsapp.ui.fragments.TopHeadLinesFragment"
+        android:label="TopHeadLinesFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.rynnarriola.newsapp.ui.fragments.SearchFragment"
+        android:label="SearchFragment" />
+</navigation>
