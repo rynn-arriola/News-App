@@ -13,6 +13,10 @@ annotation class ApplicationContext
 @Retention(AnnotationRetention.SOURCE)
 annotation class ActivityContext
 
+@Qualifier
+@Retention(AnnotationRetention.SOURCE)
+annotation class BaseUrl
+
 @MapKey
 @Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
 annotation class ViewModelKey(val value: KClass<out ViewModel>)

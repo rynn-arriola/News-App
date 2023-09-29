@@ -34,7 +34,8 @@ class TopHeadLinesFragment : Fragment() {
 
     private val viewModel by viewModels<TopHeadLinesViewModel> { viewModelFactory }
 
-    private lateinit var adapter : TopHeadLinesAdapter
+    @Inject
+    lateinit var adapter : TopHeadLinesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +67,6 @@ class TopHeadLinesFragment : Fragment() {
                 (recyclerView.layoutManager as LinearLayoutManager).orientation
             )
         )
-        adapter = TopHeadLinesAdapter(ArrayList())
         recyclerView.adapter = adapter
     }
 

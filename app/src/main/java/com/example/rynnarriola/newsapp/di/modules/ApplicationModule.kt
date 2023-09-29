@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.rynnarriola.newsapp.NewsApplication
 import com.example.rynnarriola.newsapp.data.api.NetworkService
 import com.example.rynnarriola.newsapp.di.qualifiers.ApplicationContext
+import com.example.rynnarriola.newsapp.di.qualifiers.BaseUrl
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -20,11 +21,17 @@ class ApplicationModule(private val application : NewsApplication) {
         return application
     }
 
+    @BaseUrl
+    @Provides
+    fun provideBaseUrl(): String = NetworkService.BASE_URL
+
     @Provides
     @Singleton
-    fun provideEmployeeApi(): NetworkService {
+    fun provideEmployeeApi(
+    @BaseUrl baseUrl: String
+    ): NetworkService {
         return Retrofit.Builder()
-            .baseUrl(NetworkService.BASE_URL)
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(NetworkService::class.java)
