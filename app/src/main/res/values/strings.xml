@@ -1,9 +1,19 @@
 <resources>
     <string name="app_name">NewsApp</string>
 
+    <!-- top headlines -->
     <string name="top_head_lines_title">Top Headlines</string>
     <string name="news_sources_title">News Sources</string>
     <string name="countries_title">Countries</string>
     <string name="languages_title">Languages</string>
     <string name="search_title">Search</string>
+
+    <!-- top headlines -->
+    <string name="source_bloomberg_title">Bloomberg</string>
+    <string name="source_business_insider_title">Business Insider</string>
+    <string name="source_die_zeit_title">Die Zeit</string>
+    <string name="source_financial_post_title">Financial Post</string>
+    <string name="source_fortune_title">Fortune Title</string>
+    <string name="source_handelsblatt_title">HandelsBlatt</string>
+
 </resources>

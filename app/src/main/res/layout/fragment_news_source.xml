@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/news_sources_title"
+        android:textAllCaps="true"
+        android:padding="30dp"/>
+
+    <Button
+        android:id="@+id/bloomberg_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/source_bloomberg_title" />
+
+    <Button
+        android:id="@+id/business_insider_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/source_business_insider_title" />
+
+    <Button
+        android:id="@+id/die_zeit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/source_die_zeit_title" />
+
+    <Button
+        android:id="@+id/financial_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/source_financial_post_title" />
+
+    <Button
+        android:id="@+id/fortune_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/source_fortune_title" />
+
+    <Button
+        android:id="@+id/handelsblatt_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/source_handelsblatt_title" />
+
+</LinearLayout>
