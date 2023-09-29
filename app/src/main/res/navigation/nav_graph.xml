@@ -35,7 +35,11 @@
     <fragment
         android:id="@+id/newsSourcesFragment"
         android:name="com.example.rynnarriola.newsapp.ui.fragments.NewsSourcesFragment"
-        android:label="NewsSourcesFragment" />
+        android:label="NewsSourcesFragment">
+        <action
+            android:id="@+id/action_newsSourcesFragment_to_directSourceFragment"
+            app:destination="@id/directSourceFragment" />
+    </fragment>
     <fragment
         android:id="@+id/topHeadLinesFragment"
         android:name="com.example.rynnarriola.newsapp.ui.fragments.TopHeadLinesFragment"
@@ -44,4 +48,15 @@
         android:id="@+id/searchFragment"
         android:name="com.example.rynnarriola.newsapp.ui.fragments.SearchFragment"
         android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/directSourceFragment"
+        android:name="com.example.rynnarriola.newsapp.ui.fragments.DirectSourceFragment"
+        android:label="DirectSourceFragment">
+
+        <argument
+            android:name="newsSource"
+            app:argType="string" />
+
+    </fragment>
+
 </navigation>

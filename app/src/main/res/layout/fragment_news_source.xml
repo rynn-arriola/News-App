@@ -21,38 +21,38 @@
         android:text="@string/source_bloomberg_title" />
 
     <Button
-        android:id="@+id/business_insider_button"
+        android:id="@+id/wall_street_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/source_business_insider_title" />
+        android:text="@string/source_the_wall_street_journal_title" />
 
     <Button
-        android:id="@+id/die_zeit_button"
+        android:id="@+id/nbc_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/source_die_zeit_title" />
+        android:text="@string/source_nbc_news_title" />
 
     <Button
-        android:id="@+id/financial_button"
+        android:id="@+id/cnn_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/source_financial_post_title" />
+        android:text="@string/source_cnn_title" />
 
     <Button
-        android:id="@+id/fortune_button"
+        android:id="@+id/usa_today_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/source_fortune_title" />
+        android:text="@string/source_usa_today_title" />
 
     <Button
-        android:id="@+id/handelsblatt_button"
+        android:id="@+id/reuters_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/source_handelsblatt_title" />
+        android:text="@string/source_reuters_title" />
 
 </LinearLayout>

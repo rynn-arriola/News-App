@@ -10,10 +10,10 @@
 
     <!-- top headlines -->
     <string name="source_bloomberg_title">Bloomberg</string>
-    <string name="source_business_insider_title">Business Insider</string>
-    <string name="source_die_zeit_title">Die Zeit</string>
-    <string name="source_financial_post_title">Financial Post</string>
-    <string name="source_fortune_title">Fortune Title</string>
-    <string name="source_handelsblatt_title">HandelsBlatt</string>
+    <string name="source_the_wall_street_journal_title">Wall Street Journal</string>
+    <string name="source_usa_today_title">USA today</string>
+    <string name="source_reuters_title">Reuters</string>
+    <string name="source_nbc_news_title">NBC News</string>
+    <string name="source_cnn_title">CNN</string>
 
 </resources>
