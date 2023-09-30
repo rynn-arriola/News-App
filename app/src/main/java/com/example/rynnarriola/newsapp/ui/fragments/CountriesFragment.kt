@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rynnarriola.newsapp.NewsApplication
 import com.example.rynnarriola.newsapp.R
@@ -25,6 +26,7 @@ class CountriesFragment : Fragment() {
         super.onCreate(savedInstanceState)
         injectDependencies()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,15 +46,19 @@ class CountriesFragment : Fragment() {
         val countryArray = resources.getStringArray(R.array.countries_list)
 
         val countryList = countryArray.mapNotNull { item ->
-            item.split(",").takeIf { it.size == 2 }?.let { (name, code) ->
-                Countries(name, code)
+            val cleanedItem = item.replace(" ", "")
+            cleanedItem.split(",").takeIf { it.size == 2 }?.let { (name, code) ->
+                Countries(name, code.trim())
             }
         }.toMutableList()
+
         countriesAdapter.submitList(countryList)
     }
 
-    private fun selectedCountry( country: Countries) {
-
+    private fun selectedCountry(country: Countries) {
+        val action = CountriesFragmentDirections
+            .actionCountriesFragmentToCountriesNewsFragment(countryCode = country.code)
+        findNavController().navigate(action)
     }
 
     private fun injectDependencies() {

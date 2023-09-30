@@ -4,6 +4,7 @@ import com.example.rynnarriola.newsapp.di.modules.FragmentModule
 import com.example.rynnarriola.newsapp.di.modules.ViewModelModule
 import com.example.rynnarriola.newsapp.di.scopes.FragmentScope
 import com.example.rynnarriola.newsapp.ui.fragments.CountriesFragment
+import com.example.rynnarriola.newsapp.ui.fragments.CountriesNewsFragment
 import com.example.rynnarriola.newsapp.ui.fragments.DirectSourceFragment
 import com.example.rynnarriola.newsapp.ui.fragments.TopHeadLinesFragment
 import dagger.Component
@@ -19,4 +20,6 @@ interface FragmentComponent {
     fun inject(fragment: DirectSourceFragment)
 
     fun inject(fragment: CountriesFragment)
+
+    fun inject(fragment: CountriesNewsFragment)
 }
