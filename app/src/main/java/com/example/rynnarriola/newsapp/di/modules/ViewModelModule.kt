@@ -6,6 +6,7 @@ import com.example.rynnarriola.newsapp.di.ViewModelFactory
 import com.example.rynnarriola.newsapp.di.qualifiers.ViewModelKey
 import com.example.rynnarriola.newsapp.viewmodel.CountriesViewModel
 import com.example.rynnarriola.newsapp.viewmodel.LanguageViewModel
+import com.example.rynnarriola.newsapp.viewmodel.SearchViewModel
 import com.example.rynnarriola.newsapp.viewmodel.SourceViewModel
 import com.example.rynnarriola.newsapp.viewmodel.TopHeadLinesViewModel
 import dagger.Binds
@@ -34,6 +35,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LanguageViewModel::class)
     abstract fun bindsLanguageViewModel(viewModel: LanguageViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel::class)
+    abstract fun bindsSearchViewModel(viewModel: SearchViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

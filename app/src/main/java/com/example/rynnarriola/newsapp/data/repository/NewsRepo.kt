@@ -37,4 +37,12 @@ class NewsRepo @Inject constructor(private val networkService: NetworkService) {
         }
     }
 
+    fun getSearchNews(query: String): Flow<List<Article>> {
+        return flow {
+            emit(networkService.getSearchNews(query))
+        }.map {
+            it.articles
+        }
+    }
+
 }

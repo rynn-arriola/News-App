@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.rynnarriola.newsapp.NewsApplication
 import com.example.rynnarriola.newsapp.adapter.CountriesAdapter
 import com.example.rynnarriola.newsapp.databinding.FragmentCountriesBinding
@@ -47,9 +48,10 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun performSearch(query: String) {
-        // Implement your search logic here
-        // You can use the 'query' parameter to perform the search operation
+    private fun performSearch(searchStr: String) {
+        val action = SearchFragmentDirections
+            .actionSearchFragmentToSearchNewsFragment(query = searchStr)
+        findNavController().navigate(action)
     }
 
     private fun injectDependencies() {
