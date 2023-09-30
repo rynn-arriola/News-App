@@ -22,7 +22,7 @@ class SourceViewModel @Inject constructor(
 
     fun fetchNews(source: String) {
         viewModelScope.launch {
-            newsRepo.getBloombergNews(source)
+            newsRepo.getNewsSource(source)
                 .catch { e ->
                     _uiState.value = UiState.Error(e.toString())
                 }.collect {

@@ -20,9 +20,9 @@ class NewsRepo @Inject constructor(private val networkService: NetworkService) {
         }
     }
 
-    fun getBloombergNews(source: String): Flow<List<Article>> {
+    fun getNewsSource(source: String): Flow<List<Article>> {
         return flow {
-            emit(networkService.getBloombergNews(source))
+            emit(networkService.getNewsSource(source))
         }.map {
             it.articles
         }
