@@ -16,6 +16,9 @@
     <string name="source_nbc_news_title">NBC News</string>
     <string name="source_cnn_title">CNN</string>
 
+    <!-- search -->
+    <string name="hint_search">Search</string>
+
     <string-array name="countries_list">
         <item>Argentina, ar</item>
         <item>Australia, au</item>
