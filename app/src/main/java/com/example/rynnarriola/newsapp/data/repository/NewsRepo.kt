@@ -2,6 +2,7 @@ package com.example.rynnarriola.newsapp.data.repository
 
 import com.example.rynnarriola.newsapp.data.api.NetworkService
 import com.example.rynnarriola.newsapp.data.model.Article
+import com.example.rynnarriola.newsapp.data.model.LanguageSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -25,6 +26,14 @@ class NewsRepo @Inject constructor(private val networkService: NetworkService) {
             emit(networkService.getNewsSource(source))
         }.map {
             it.articles
+        }
+    }
+
+    fun getNewsByLanguage(language: String): Flow<List<LanguageSource>> {
+        return flow {
+            emit(networkService.getNewsByLanguage(language))
+        }.map {
+            it.sources
         }
     }
 

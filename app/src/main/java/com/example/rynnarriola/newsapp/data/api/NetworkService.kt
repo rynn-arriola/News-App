@@ -1,5 +1,6 @@
 package com.example.rynnarriola.newsapp.data.api
 
+import com.example.rynnarriola.newsapp.data.model.LanguageNewsResponse
 import com.example.rynnarriola.newsapp.data.model.TopHeadlinesResponse
 import com.example.rynnarriola.newsapp.util.Constants.API_KEY
 import retrofit2.http.GET
@@ -19,6 +20,10 @@ interface NetworkService {
     @Headers("X-Api-Key: $API_KEY")
     @GET("top-headlines")
     suspend fun getNewsSource(@Query("sources") source: String): TopHeadlinesResponse
+
+    @Headers("X-Api-Key: $API_KEY")
+    @GET("top-headlines/sources")
+    suspend fun getNewsByLanguage(@Query("language") language: String): LanguageNewsResponse
 
 
 }
