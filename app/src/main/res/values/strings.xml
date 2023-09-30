@@ -74,4 +74,22 @@
         <!-- Add more items as needed -->
     </string-array>
 
+    <string-array name="language_list">
+        <item>Argentina, ar</item>
+        <item>German, de</item>
+        <item>English, en</item>
+        <item>Spanish, es</item>
+        <item>French, fr</item>
+        <item>Hindi, he</item>
+        <item>Italian, it</item>
+        <item>Dutch, nl</item>
+        <item>Norwegian, no</item>
+        <item> Portuguese, pt</item>
+        <item>Russian, ru</item>
+        <item>Swedish, sv</item>
+        <item>China, zh</item>
+
+        <!-- Add more items as needed -->
+    </string-array>
+
 </resources>

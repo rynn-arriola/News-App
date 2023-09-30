@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/countriesFragment"
         android:name="com.example.rynnarriola.newsapp.ui.fragments.CountriesFragment"
-        android:label="CountriesFragment" >
+        android:label="CountriesFragment">
         <action
             android:id="@+id/action_countriesFragment_to_countriesNewsFragment"
             app:destination="@id/countriesNewsFragment" />
@@ -35,7 +35,11 @@
     <fragment
         android:id="@+id/languagesFragment"
         android:name="com.example.rynnarriola.newsapp.ui.fragments.LanguagesFragment"
-        android:label="LanguagesFragment" />
+        android:label="LanguagesFragment">
+        <action
+            android:id="@+id/action_languagesFragment_to_languageNewsFragment"
+            app:destination="@id/languageNewsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newsSourcesFragment"
         android:name="com.example.rynnarriola.newsapp.ui.fragments.NewsSourcesFragment"
@@ -65,10 +69,19 @@
     <fragment
         android:id="@+id/countriesNewsFragment"
         android:name="com.example.rynnarriola.newsapp.ui.fragments.CountriesNewsFragment"
-        android:label="CountriesNewsFragment" >
+        android:label="CountriesNewsFragment">
 
         <argument
             android:name="countryCode"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/languageNewsFragment"
+        android:name="com.example.rynnarriola.newsapp.ui.fragments.LanguageNewsFragment"
+        android:label="LanguageNewsFragment">
+
+        <argument
+            android:name="languageCode"
             app:argType="string" />
     </fragment>
 
