@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.rynnarriola.newsapp.di.ViewModelFactory
 import com.example.rynnarriola.newsapp.di.qualifiers.ViewModelKey
+import com.example.rynnarriola.newsapp.viewmodel.CountriesViewModel
 import com.example.rynnarriola.newsapp.viewmodel.SourceViewModel
 import com.example.rynnarriola.newsapp.viewmodel.TopHeadLinesViewModel
 import dagger.Binds
@@ -22,6 +23,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SourceViewModel::class)
     abstract fun bindSourceViewModel(viewModel: SourceViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CountriesViewModel::class)
+    abstract fun bindSCountriesViewModel(viewModel: CountriesViewModel): ViewModel
 
 
     @Binds
