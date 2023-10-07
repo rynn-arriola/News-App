@@ -34,26 +34,29 @@ class ApplicationModule(private val application : NewsApplication) {
         return SupportInterceptor() // Return a SupportInterceptor instance
     }
 
-
     @BaseUrl
     @Provides
     fun provideBaseUrl(): String = NetworkService.BASE_URL
 
     @Provides
     @Singleton
-    fun provideNetworkService(
-        @BaseUrl baseUrl: String,
-        interceptor: Interceptor
-    ): NetworkService {
-        val httpClient = OkHttpClient.Builder()
+    fun provideOkHttpClient(interceptor: Interceptor): OkHttpClient {
+        return OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .connectTimeout(20, TimeUnit.SECONDS)
             .readTimeout(20, TimeUnit.SECONDS)
             .build()
+    }
 
+    @Provides
+    @Singleton
+    fun provideNetworkService(
+    @BaseUrl baseUrl: String,
+    okHttpClient: OkHttpClient
+    ): NetworkService {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
-            .client(httpClient)
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(NetworkService::class.java)
