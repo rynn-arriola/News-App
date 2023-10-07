@@ -24,7 +24,7 @@ class TopHeadLinesViewModel @Inject constructor(
         fetchNews()
     }
 
-    private fun fetchNews() {
+    fun fetchNews() {
         viewModelScope.launch {
             newsRepo.getTopHeadlines(COUNTRY)
                 .catch { e ->

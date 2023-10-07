@@ -1,6 +1,8 @@
 package com.example.rynnarriola.newsapp.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rynnarriola.newsapp.data.model.Article
 import com.example.rynnarriola.newsapp.data.repository.NewsRepo
@@ -17,7 +19,7 @@ class CountriesViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow<UiState<List<Article>>>(UiState.Loading)
 
-    val uiState: StateFlow<UiState<List<Article>>> = _uiState
+    val uiState: LiveData<UiState<List<Article>>> = _uiState.asLiveData()
 
     fun fetchNews(countryCode: String) {
         viewModelScope.launch {

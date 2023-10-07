@@ -71,6 +71,12 @@ class DirectSourceFragment : Fragment() {
             )
         )
         recyclerView.adapter = adapter
+
+        binding.errorLayout.retryButton.setOnClickListener {
+            binding.errorLayout.root.visibility = View.GONE
+            binding.progressBar.visibility = View.VISIBLE
+            viewModel.fetchNews(args.newsSource)
+        }
     }
 
     private fun setupObserver() {
@@ -80,16 +86,19 @@ class DirectSourceFragment : Fragment() {
                     when (it) {
                         is UiState.Success -> {
                             binding.progressBar.visibility = View.GONE
-                            renderList(it.data)
                             binding.recyclerView.visibility = View.VISIBLE
+                            binding.errorLayout.root.visibility = View.GONE
+                            renderList(it.data)
                         }
                         is UiState.Loading -> {
                             binding.progressBar.visibility = View.VISIBLE
                             binding.recyclerView.visibility = View.GONE
+                            binding.errorLayout.root.visibility = View.GONE
                         }
                         is UiState.Error -> {
-                            //Handle Error
                             binding.progressBar.visibility = View.GONE
+                            binding.recyclerView.visibility = View.GONE
+                            binding.errorLayout.root.visibility = View.VISIBLE
                         }
                     }
                 }

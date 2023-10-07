@@ -51,6 +51,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.7.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.7.2'
 
+    //livedata
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2"
+
     //Dagger
     implementation 'com.google.dagger:dagger:2.47'
     kapt 'com.google.dagger:dagger-compiler:2.47'

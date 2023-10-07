@@ -71,31 +71,37 @@ class CountriesNewsFragment : Fragment() {
             )
         )
         recyclerView.adapter = adapter
+
+        binding.errorLayout.retryButton.setOnClickListener {
+            binding.errorLayout.root.visibility = View.GONE
+            binding.progressBar.visibility = View.VISIBLE
+            viewModel.fetchNews(args.countryCode)
+        }
     }
 
     private fun setupObserver() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect {
-                    when (it) {
-                        is UiState.Success -> {
-                            binding.progressBar.visibility = View.GONE
-                            renderList(it.data)
-                            binding.recyclerView.visibility = View.VISIBLE
-                        }
-                        is UiState.Loading -> {
-                            binding.progressBar.visibility = View.VISIBLE
-                            binding.recyclerView.visibility = View.GONE
-                        }
-                        is UiState.Error -> {
-                            //Handle Error
-                            binding.progressBar.visibility = View.GONE
-                        }
-                    }
+        viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
+            when (uiState) {
+                is UiState.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.recyclerView.visibility = View.VISIBLE
+                    binding.errorLayout.root.visibility = View.GONE
+                    renderList(uiState.data)
+                }
+                is UiState.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.GONE
+                    binding.errorLayout.root.visibility = View.GONE
+                }
+                is UiState.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.recyclerView.visibility = View.GONE
+                    binding.errorLayout.root.visibility = View.VISIBLE
                 }
             }
         }
     }
+
 
     private fun renderList(articleList: List<Article>) {
         adapter.addData(articleList)
