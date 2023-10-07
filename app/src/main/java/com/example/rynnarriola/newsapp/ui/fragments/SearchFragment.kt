@@ -9,8 +9,6 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.rynnarriola.newsapp.NewsApplication
-import com.example.rynnarriola.newsapp.adapter.CountriesAdapter
-import com.example.rynnarriola.newsapp.databinding.FragmentCountriesBinding
 import com.example.rynnarriola.newsapp.databinding.FragmentSearchBinding
 import com.example.rynnarriola.newsapp.di.components.DaggerFragmentComponent
 import com.example.rynnarriola.newsapp.di.modules.FragmentModule
@@ -61,5 +59,10 @@ class SearchFragment : Fragment() {
             .fragmentModule(FragmentModule(this))
             .build()
             .inject(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

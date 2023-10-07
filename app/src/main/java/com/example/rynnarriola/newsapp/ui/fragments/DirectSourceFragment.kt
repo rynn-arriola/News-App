@@ -110,4 +110,9 @@ class DirectSourceFragment : Fragment() {
             .build()
             .inject(this)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

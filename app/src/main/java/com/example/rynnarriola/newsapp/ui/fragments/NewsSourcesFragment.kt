@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.rynnarriola.newsapp.R
 import com.example.rynnarriola.newsapp.databinding.FragmentNewsSourceBinding
 
 class NewsSourcesFragment : Fragment() {
@@ -63,5 +62,9 @@ class NewsSourcesFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
 }

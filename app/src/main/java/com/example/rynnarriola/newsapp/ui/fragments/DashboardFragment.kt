@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.rynnarriola.newsapp.R
-import com.example.rynnarriola.newsapp.adapter.TopHeadLinesAdapter
 import com.example.rynnarriola.newsapp.databinding.FragmentDashboardBinding
 
 class DashboardFragment: Fragment() {
@@ -44,5 +43,10 @@ class DashboardFragment: Fragment() {
         binding.searchButton.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_searchFragment)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
