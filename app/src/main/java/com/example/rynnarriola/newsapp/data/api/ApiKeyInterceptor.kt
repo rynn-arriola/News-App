@@ -1,11 +1,10 @@
     package com.example.rynnarriola.newsapp.data.api
 
-import com.example.rynnarriola.newsapp.util.Constants
+import com.example.rynnarriola.newsapp.di.qualifiers.ApiKey
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class SupportInterceptor: Interceptor {
-    private val apiKey = Constants.API_KEY
+class ApiKeyInterceptor(@ApiKey private val apiKey: String): Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()

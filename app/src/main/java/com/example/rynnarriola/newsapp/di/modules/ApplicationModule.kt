@@ -3,9 +3,11 @@ package com.example.rynnarriola.newsapp.di.modules
 import android.content.Context
 import com.example.rynnarriola.newsapp.NewsApplication
 import com.example.rynnarriola.newsapp.data.api.NetworkService
-import com.example.rynnarriola.newsapp.data.api.SupportInterceptor
+import com.example.rynnarriola.newsapp.data.api.ApiKeyInterceptor
+import com.example.rynnarriola.newsapp.di.qualifiers.ApiKey
 import com.example.rynnarriola.newsapp.di.qualifiers.ApplicationContext
 import com.example.rynnarriola.newsapp.di.qualifiers.BaseUrl
+import com.example.rynnarriola.newsapp.util.Constants
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -28,15 +30,19 @@ class ApplicationModule(private val application : NewsApplication) {
 
     @Provides
     @Singleton
-    fun provideInterceptor(): Interceptor {
+    fun provideInterceptor(@ApiKey apiKey: String): Interceptor {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY // Logs both headers and body
-        return SupportInterceptor() // Return a SupportInterceptor instance
+        return ApiKeyInterceptor(apiKey) // Return a SupportInterceptor instance
     }
 
     @BaseUrl
     @Provides
     fun provideBaseUrl(): String = NetworkService.BASE_URL
+
+    @ApiKey
+    @Provides
+    fun provideApiKey(): String = Constants.API_KEY
 
     @Provides
     @Singleton
