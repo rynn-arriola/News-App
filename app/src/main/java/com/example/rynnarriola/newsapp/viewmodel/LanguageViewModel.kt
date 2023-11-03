@@ -1,7 +1,7 @@
 package com.example.rynnarriola.newsapp.viewmodel
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.rynnarriola.newsapp.base.BaseViewModel
 import com.example.rynnarriola.newsapp.data.model.LanguageSource
 import com.example.rynnarriola.newsapp.data.repository.NewsRepo
 import com.example.rynnarriola.newsapp.util.UiState
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class LanguageViewModel @Inject constructor(
     private val newsRepo: NewsRepo
-): ViewModel() {
+): BaseViewModel() {
 
     private val _uiState = MutableStateFlow<UiState<List<LanguageSource>>>(UiState.Loading)
 

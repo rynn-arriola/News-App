@@ -4,56 +4,48 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rynnarriola.newsapp.NewsApplication
 import com.example.rynnarriola.newsapp.adapter.TopHeadLinesAdapter
+import com.example.rynnarriola.newsapp.base.BaseFragment
 import com.example.rynnarriola.newsapp.data.model.Article
 import com.example.rynnarriola.newsapp.databinding.FragmentDirectSourceBinding
-import com.example.rynnarriola.newsapp.di.components.DaggerFragmentComponent
-import com.example.rynnarriola.newsapp.di.modules.FragmentModule
+import com.example.rynnarriola.newsapp.di.components.FragmentComponent
 import com.example.rynnarriola.newsapp.util.UiState
 import com.example.rynnarriola.newsapp.viewmodel.SourceViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DirectSourceFragment : Fragment() {
+class DirectSourceFragment : BaseFragment<SourceViewModel, FragmentDirectSourceBinding>() {
 
-    private var _binding: FragmentDirectSourceBinding? = null
-    private val binding get() = _binding!!
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel by viewModels<SourceViewModel> { viewModelFactory }
 
     @Inject
-    lateinit var adapter : TopHeadLinesAdapter
+    lateinit var adapter: TopHeadLinesAdapter
 
     private val args: DirectSourceFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        injectDependencies()
         viewModel.fetchNews(args.newsSource)
     }
 
-    override fun onCreateView(
-
+    override fun createBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FragmentDirectSourceBinding.inflate(inflater, container, false).also {
-        _binding = it
+        container: ViewGroup?
+    ): FragmentDirectSourceBinding {
+        return FragmentDirectSourceBinding.inflate(inflater, container, false)
+    }
 
-    }.root
+    override fun injectDependencies(fragmentComponent: FragmentComponent) {
+        return fragmentComponent.inject(this)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -90,11 +82,13 @@ class DirectSourceFragment : Fragment() {
                             binding.errorLayout.root.visibility = View.GONE
                             renderList(it.data)
                         }
+
                         is UiState.Loading -> {
                             binding.progressBar.visibility = View.VISIBLE
                             binding.recyclerView.visibility = View.GONE
                             binding.errorLayout.root.visibility = View.GONE
                         }
+
                         is UiState.Error -> {
                             binding.progressBar.visibility = View.GONE
                             binding.recyclerView.visibility = View.GONE
@@ -109,19 +103,5 @@ class DirectSourceFragment : Fragment() {
     private fun renderList(articleList: List<Article>) {
         adapter.addData(articleList)
         adapter.notifyDataSetChanged()
-    }
-
-    private fun injectDependencies() {
-        DaggerFragmentComponent
-            .builder()
-            .applicationComponent((requireContext().applicationContext as NewsApplication).applicationComponent)
-            .fragmentModule(FragmentModule(this))
-            .build()
-            .inject(this)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

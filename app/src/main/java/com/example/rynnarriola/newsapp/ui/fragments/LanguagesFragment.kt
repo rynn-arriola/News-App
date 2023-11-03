@@ -4,37 +4,31 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rynnarriola.newsapp.NewsApplication
 import com.example.rynnarriola.newsapp.R
 import com.example.rynnarriola.newsapp.adapter.CountriesAdapter
+import com.example.rynnarriola.newsapp.base.BaseFragment
+import com.example.rynnarriola.newsapp.base.BaseViewModel
 import com.example.rynnarriola.newsapp.data.model.Countries
 import com.example.rynnarriola.newsapp.databinding.FragmentLanguageBinding
-import com.example.rynnarriola.newsapp.di.components.DaggerFragmentComponent
-import com.example.rynnarriola.newsapp.di.modules.FragmentModule
+import com.example.rynnarriola.newsapp.di.components.FragmentComponent
 
-class LanguagesFragment : Fragment() {
-
-    private var _binding: FragmentLanguageBinding? = null
-    private val binding get() = _binding!!
+class LanguagesFragment : BaseFragment<BaseViewModel, FragmentLanguageBinding>() {
 
     private val countriesAdapter by lazy { CountriesAdapter(::selectedCountry) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        injectDependencies()
     }
 
-    override fun onCreateView(
+    override fun createBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FragmentLanguageBinding.inflate(inflater, container, false).also {
-        _binding = it
+        container: ViewGroup?
+    ) = FragmentLanguageBinding.inflate(inflater, container, false)
 
-    }.root
+    override fun injectDependencies(fragmentComponent: FragmentComponent) =
+        fragmentComponent.inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,19 +53,5 @@ class LanguagesFragment : Fragment() {
         val action = LanguagesFragmentDirections
             .actionLanguagesFragmentToLanguageNewsFragment(languageCode = country.code)
         findNavController().navigate(action)
-    }
-
-    private fun injectDependencies() {
-        DaggerFragmentComponent
-            .builder()
-            .applicationComponent((requireContext().applicationContext as NewsApplication).applicationComponent)
-            .fragmentModule(FragmentModule(this))
-            .build()
-            .inject(this)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

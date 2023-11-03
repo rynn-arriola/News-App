@@ -19,6 +19,7 @@ import dagger.Component
     modules = [FragmentModule::class, ViewModelModule::class]
 )
 interface FragmentComponent {
+
     fun inject(fragment: TopHeadLinesFragment)
 
     fun inject(fragment: DirectSourceFragment)
