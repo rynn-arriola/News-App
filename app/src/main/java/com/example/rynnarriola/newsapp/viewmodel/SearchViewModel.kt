@@ -7,6 +7,7 @@ import com.example.rynnarriola.newsapp.data.repository.NewsRepo
 import com.example.rynnarriola.newsapp.util.Constants.DEBOUNCE_TIMEOUT
 import com.example.rynnarriola.newsapp.util.Constants.MIN_SEARCH_CHAR
 import com.example.rynnarriola.newsapp.util.UiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,6 +20,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class SearchViewModel @Inject constructor(
     private val newsRepo: NewsRepo
 ) : BaseViewModel() {

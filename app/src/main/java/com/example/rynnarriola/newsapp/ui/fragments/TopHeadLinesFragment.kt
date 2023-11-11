@@ -14,15 +14,16 @@ import com.example.rynnarriola.newsapp.adapter.TopHeadLinesAdapter
 import com.example.rynnarriola.newsapp.base.BaseFragment
 import com.example.rynnarriola.newsapp.data.model.Article
 import com.example.rynnarriola.newsapp.databinding.FragmentTopHeadlinesBinding
-import com.example.rynnarriola.newsapp.di.components.FragmentComponent
 import com.example.rynnarriola.newsapp.util.UiState
 import com.example.rynnarriola.newsapp.viewmodel.TopHeadLinesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class TopHeadLinesFragment : BaseFragment<TopHeadLinesViewModel, FragmentTopHeadlinesBinding>() {
 
-    private val viewModel by viewModels<TopHeadLinesViewModel> { viewModelFactory }
+    private val viewModel by viewModels<TopHeadLinesViewModel> ()
 
     @Inject
     lateinit var adapter : TopHeadLinesAdapter
@@ -31,8 +32,6 @@ class TopHeadLinesFragment : BaseFragment<TopHeadLinesViewModel, FragmentTopHead
         inflater: LayoutInflater,
         container: ViewGroup?
     )= FragmentTopHeadlinesBinding.inflate(inflater, container, false)
-
-    override fun injectDependencies(fragmentComponent: FragmentComponent) = fragmentComponent.inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
