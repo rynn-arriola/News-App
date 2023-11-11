@@ -10,7 +10,7 @@ import com.example.rynnarriola.newsapp.R
 import com.example.rynnarriola.newsapp.adapter.CountriesAdapter
 import com.example.rynnarriola.newsapp.base.BaseFragment
 import com.example.rynnarriola.newsapp.base.BaseViewModel
-import com.example.rynnarriola.newsapp.data.model.Countries
+import com.example.rynnarriola.newsapp.data.model.Country
 import com.example.rynnarriola.newsapp.databinding.FragmentLanguageBinding
 import com.example.rynnarriola.newsapp.di.components.FragmentComponent
 
@@ -41,15 +41,15 @@ class LanguagesFragment : BaseFragment<BaseViewModel, FragmentLanguageBinding>()
 
         val languageList = countryArray.mapNotNull { item ->
             val cleanedItem = item.replace(" ", "")
-            cleanedItem.split(",").takeIf { it.size == 2 }?.let { (name, code) ->
-                Countries(name, code.trim())
+            cleanedItem.split(",").takeIf { it.size == 2 }?.let { (code, name) ->
+                Country(name, code.trim())
             }
         }.toMutableList()
 
         countriesAdapter.submitList(languageList)
     }
 
-    private fun selectedCountry(country: Countries) {
+    private fun selectedCountry(country: Country) {
         val action = LanguagesFragmentDirections
             .actionLanguagesFragmentToLanguageNewsFragment(languageCode = country.code)
         findNavController().navigate(action)

@@ -3,20 +3,20 @@ package com.example.rynnarriola.newsapp.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import com.example.rynnarriola.newsapp.data.model.Countries
+import com.example.rynnarriola.newsapp.data.model.Country
 import com.example.rynnarriola.newsapp.databinding.ItemCountriesBinding
 
 
-class CountriesAdapter(private val countryClicked: (Countries) -> Unit) :
+class CountriesAdapter(private val countryClicked: (Country) -> Unit) :
     RecyclerView.Adapter<CountriesAdapter.CountryViewHolder>() {
 
-    private val countriesList = mutableListOf<Countries>()
+    private val countriesList = mutableListOf<Country>()
 
     inner class CountryViewHolder(private val binding: ItemCountriesBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindCountry(country: Countries) {
-            binding.countryButton.text = country.countries
+        fun bindCountry(country: Country) {
+            binding.countryButton.text = country.country
             binding.countryButton.setOnClickListener { countryClicked(country) }
         }
     }
@@ -34,7 +34,7 @@ class CountriesAdapter(private val countryClicked: (Countries) -> Unit) :
 
     override fun getItemCount(): Int = countriesList.size
 
-    fun submitList(countries: List<Countries>) {
+    fun submitList(countries: List<Country>) {
         countriesList.clear()
         countriesList.addAll(countries)
         notifyDataSetChanged()

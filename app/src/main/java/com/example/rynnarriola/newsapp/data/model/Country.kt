@@ -1,6 +1,6 @@
 package com.example.rynnarriola.newsapp.data.model
 
-data class Countries(
-    val countries: String,
+data class Country(
     val code: String,
+    val country: String,
 )

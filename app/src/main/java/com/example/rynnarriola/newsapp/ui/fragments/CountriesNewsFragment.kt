@@ -14,12 +14,12 @@ import com.example.rynnarriola.newsapp.data.model.Article
 import com.example.rynnarriola.newsapp.databinding.FragmentCountriesNewsBinding
 import com.example.rynnarriola.newsapp.di.components.FragmentComponent
 import com.example.rynnarriola.newsapp.util.UiState
-import com.example.rynnarriola.newsapp.viewmodel.CountriesViewModel
+import com.example.rynnarriola.newsapp.viewmodel.CountriesNewsViewModel
 import javax.inject.Inject
 
-class CountriesNewsFragment : BaseFragment<CountriesViewModel, FragmentCountriesNewsBinding>() {
+class CountriesNewsFragment : BaseFragment<CountriesNewsViewModel, FragmentCountriesNewsBinding>() {
 
-    private val viewModel by viewModels<CountriesViewModel> { viewModelFactory }
+    private val viewModel by viewModels<CountriesNewsViewModel> { viewModelFactory }
 
     @Inject
     lateinit var adapter: TopHeadLinesAdapter

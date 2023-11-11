@@ -4,17 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rynnarriola.newsapp.R
 import com.example.rynnarriola.newsapp.adapter.CountriesAdapter
 import com.example.rynnarriola.newsapp.base.BaseFragment
-import com.example.rynnarriola.newsapp.base.BaseViewModel
-import com.example.rynnarriola.newsapp.data.model.Countries
+import com.example.rynnarriola.newsapp.data.model.Country
 import com.example.rynnarriola.newsapp.databinding.FragmentCountriesBinding
 import com.example.rynnarriola.newsapp.di.components.FragmentComponent
+import com.example.rynnarriola.newsapp.util.UiState
+import com.example.rynnarriola.newsapp.viewmodel.CountriesViewModel
+import kotlinx.coroutines.launch
 
-class CountriesFragment : BaseFragment<BaseViewModel, FragmentCountriesBinding>() {
+class CountriesFragment : BaseFragment<CountriesViewModel, FragmentCountriesBinding>() {
+
+    private val viewModel by viewModels<CountriesViewModel> { viewModelFactory }
 
     private val countriesAdapter by lazy { CountriesAdapter(::selectedCountry) }
     override fun createBinding(
@@ -31,23 +38,40 @@ class CountriesFragment : BaseFragment<BaseViewModel, FragmentCountriesBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupObserver()
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = countriesAdapter
         }
-        val countryArray = resources.getStringArray(R.array.countries_list)
-
-        val countryList = countryArray.mapNotNull { item ->
-            val cleanedItem = item.replace(" ", "")
-            cleanedItem.split(",").takeIf { it.size == 2 }?.let { (name, code) ->
-                Countries(name, code.trim())
+    }
+    private fun setupObserver() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect {
+                    when (it) {
+                        is UiState.Success -> {
+                            binding.progressBar.visibility = View.GONE
+                            binding.recyclerView.visibility = View.VISIBLE
+                            binding.errorLayout.root.visibility = View.GONE
+                            countriesAdapter.submitList(it.data)
+                        }
+                        is UiState.Loading -> {
+                            binding.progressBar.visibility = View.VISIBLE
+                            binding.recyclerView.visibility = View.GONE
+                            binding.errorLayout.root.visibility = View.GONE
+                        }
+                        is UiState.Error -> {
+                            binding.progressBar.visibility = View.GONE
+                            binding.recyclerView.visibility = View.GONE
+                            binding.errorLayout.root.visibility = View.VISIBLE
+                        }
+                    }
+                }
             }
-        }.toMutableList()
-
-        countriesAdapter.submitList(countryList)
+        }
     }
 
-    private fun selectedCountry(country: Countries) {
+    private fun selectedCountry(country: Country) {
         val action = CountriesFragmentDirections
             .actionCountriesFragmentToCountriesNewsFragment(countryCode = country.code)
         findNavController().navigate(action)

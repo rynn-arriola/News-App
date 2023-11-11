@@ -19,64 +19,6 @@
     <!-- search -->
     <string name="hint_search">Search</string>
 
-    <string-array name="countries_list">
-        <item>Argentina, ar</item>
-        <item>Australia, au</item>
-        <item>Austria, at</item>
-        <item>Belgium, be</item>
-        <item>Brazil, br</item>
-        <item>Bulgaria, bg</item>
-        <item>Canada, ca</item>
-        <item>China, cn</item>
-        <item>Columbia, co</item>
-        <item>Cuba, cu</item>
-        <item>Czech Republic, cz</item>
-        <item>Egypt, eg</item>
-        <item>France, fr</item>
-        <item>Germany, de</item>
-        <item>Greece, gr</item>
-        <item>HongKong, hk</item>
-        <item>Hungary, hu</item>
-        <item>India, in</item>
-        <item>Indonesia, id</item>
-        <item>Ireland, ie</item>
-        <item>Israel, il</item>
-        <item>Italy, it</item>
-        <item>Japan, jp</item>
-        <item>Latvia, lv</item>
-        <item>Lithuania, lt</item>
-        <item>Malaysia, my</item>
-        <item>Mexico, mx</item>
-        <item>Morocco, ma</item>
-        <item>Netherlands, nl</item>
-        <item>New Zealand, nz</item>
-        <item>Nigeria, ng</item>
-        <item>Norway, no</item>
-        <item>Philippines, ph</item>
-        <item>Poland, pl</item>
-        <item>Portugal, pt</item>
-        <item>Item 3</item>
-        <item>Romania, ro</item>
-        <item>Russia, ru</item>
-        <item>Saudi Arabia, sa</item>
-        <item>Serbia, rs</item>
-        <item>Singapore, sg</item>
-        <item>Slovakia, sk</item>
-        <item>Slovenia, si</item>
-        <item>South Africa, za</item>
-        <item>South Korea, kr</item>
-        <item>Sweden, se</item>
-        <item>Switzerland, ch</item>
-        <item>Taiwan, tw</item>
-        <item>Thailand, th</item>
-        <item>Turkey, tr</item>
-        <item>UAE, ae</item>
-        <item>United Kingdom, gb</item>
-        <item>United States, us</item>
-        <item>Venezuela, ve</item>
-        <!-- Add more items as needed -->
-    </string-array>
-
     <string-array name="language_list">
         <item>Argentina, ar</item>
         <item>German, de</item>

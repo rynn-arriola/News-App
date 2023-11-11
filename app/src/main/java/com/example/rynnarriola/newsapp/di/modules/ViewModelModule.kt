@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.rynnarriola.newsapp.di.ViewModelFactory
 import com.example.rynnarriola.newsapp.di.qualifiers.ViewModelKey
+import com.example.rynnarriola.newsapp.viewmodel.CountriesNewsViewModel
 import com.example.rynnarriola.newsapp.viewmodel.CountriesViewModel
 import com.example.rynnarriola.newsapp.viewmodel.LanguageViewModel
 import com.example.rynnarriola.newsapp.viewmodel.SearchViewModel
@@ -28,8 +29,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(CountriesViewModel::class)
-    abstract fun bindSCountriesViewModel(viewModel: CountriesViewModel): ViewModel
+    @ViewModelKey(CountriesNewsViewModel::class)
+    abstract fun bindsCountriesNewsViewModel(viewModel: CountriesNewsViewModel): ViewModel
 
     @Binds
     @IntoMap
@@ -40,6 +41,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SearchViewModel::class)
     abstract fun bindsSearchViewModel(viewModel: SearchViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CountriesViewModel::class)
+    abstract fun bindsCountriesViewModel(viewModel: CountriesViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
