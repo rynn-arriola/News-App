@@ -15,16 +15,17 @@ import com.example.rynnarriola.newsapp.adapter.LanguageNewsAdapter
 import com.example.rynnarriola.newsapp.base.BaseFragment
 import com.example.rynnarriola.newsapp.data.model.LanguageSource
 import com.example.rynnarriola.newsapp.databinding.FragmentLanguageNewsBinding
-import com.example.rynnarriola.newsapp.di.components.FragmentComponent
 import com.example.rynnarriola.newsapp.util.UiState
 import com.example.rynnarriola.newsapp.viewmodel.LanguageViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class LanguageNewsFragment : BaseFragment<LanguageViewModel, FragmentLanguageNewsBinding>() {
 
 
-    private val viewModel by viewModels<LanguageViewModel> { viewModelFactory }
+    private val viewModel by viewModels<LanguageViewModel> ()
 
     @Inject
     lateinit var adapter: LanguageNewsAdapter
@@ -40,9 +41,6 @@ class LanguageNewsFragment : BaseFragment<LanguageViewModel, FragmentLanguageNew
         inflater: LayoutInflater,
         container: ViewGroup?
     ) = FragmentLanguageNewsBinding.inflate(inflater, container, false)
-
-    override fun injectDependencies(fragmentComponent: FragmentComponent) =
-        fragmentComponent.inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

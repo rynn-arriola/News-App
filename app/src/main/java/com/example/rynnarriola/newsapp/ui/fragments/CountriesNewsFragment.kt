@@ -12,14 +12,15 @@ import com.example.rynnarriola.newsapp.adapter.TopHeadLinesAdapter
 import com.example.rynnarriola.newsapp.base.BaseFragment
 import com.example.rynnarriola.newsapp.data.model.Article
 import com.example.rynnarriola.newsapp.databinding.FragmentCountriesNewsBinding
-import com.example.rynnarriola.newsapp.di.components.FragmentComponent
 import com.example.rynnarriola.newsapp.util.UiState
 import com.example.rynnarriola.newsapp.viewmodel.CountriesNewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class CountriesNewsFragment : BaseFragment<CountriesNewsViewModel, FragmentCountriesNewsBinding>() {
 
-    private val viewModel by viewModels<CountriesNewsViewModel> { viewModelFactory }
+    private val viewModel by viewModels<CountriesNewsViewModel> ()
 
     @Inject
     lateinit var adapter: TopHeadLinesAdapter
@@ -36,10 +37,6 @@ class CountriesNewsFragment : BaseFragment<CountriesNewsViewModel, FragmentCount
         container: ViewGroup?
     ): FragmentCountriesNewsBinding {
         return FragmentCountriesNewsBinding.inflate(inflater, container, false)
-    }
-
-    override fun injectDependencies(fragmentComponent: FragmentComponent) {
-        return fragmentComponent.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

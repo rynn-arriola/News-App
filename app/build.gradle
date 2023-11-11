@@ -1,8 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -54,9 +55,9 @@ dependencies {
     //livedata
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2"
 
-    //Dagger
-    implementation 'com.google.dagger:dagger:2.47'
-    kapt 'com.google.dagger:dagger-compiler:2.47'
+    //Hilt
+    implementation "com.google.dagger:hilt-android:2.48"
+    kapt "com.google.dagger:hilt-compiler:2.48"
 
     //Retrofit - helps me connect to api and fetch or update data
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -67,7 +68,6 @@ dependencies {
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.13.2'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     //CustomTabsIntent
     implementation 'androidx.browser:browser:1.4.0'

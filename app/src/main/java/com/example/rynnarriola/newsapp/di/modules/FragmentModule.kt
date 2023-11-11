@@ -1,25 +1,22 @@
 package com.example.rynnarriola.newsapp.di.modules
 
-import android.content.Context
-import androidx.fragment.app.Fragment
 import com.example.rynnarriola.newsapp.adapter.LanguageNewsAdapter
 import com.example.rynnarriola.newsapp.adapter.TopHeadLinesAdapter
-import com.example.rynnarriola.newsapp.di.qualifiers.ActivityContext
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.FragmentComponent
+import dagger.hilt.android.scopes.FragmentScoped
 
 @Module
-class FragmentModule(private val fragment: Fragment) {
+@InstallIn(FragmentComponent::class)
+class FragmentModule {
 
-    @ActivityContext
-    @Provides
-    fun provideContext(): Context {
-        return fragment.requireContext()
-    }
-
+    @FragmentScoped
     @Provides
     fun provideTopHeadlineAdapter() = TopHeadLinesAdapter(ArrayList())
 
+    @FragmentScoped
     @Provides
     fun provideLanguageNewsAdapter() = LanguageNewsAdapter(ArrayList())
 }

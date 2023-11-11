@@ -15,16 +15,17 @@ import com.example.rynnarriola.newsapp.adapter.TopHeadLinesAdapter
 import com.example.rynnarriola.newsapp.base.BaseFragment
 import com.example.rynnarriola.newsapp.data.model.Article
 import com.example.rynnarriola.newsapp.databinding.FragmentDirectSourceBinding
-import com.example.rynnarriola.newsapp.di.components.FragmentComponent
 import com.example.rynnarriola.newsapp.util.UiState
 import com.example.rynnarriola.newsapp.viewmodel.SourceViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class DirectSourceFragment : BaseFragment<SourceViewModel, FragmentDirectSourceBinding>() {
 
 
-    private val viewModel by viewModels<SourceViewModel> { viewModelFactory }
+    private val viewModel by viewModels<SourceViewModel> ()
 
     @Inject
     lateinit var adapter: TopHeadLinesAdapter
@@ -41,10 +42,6 @@ class DirectSourceFragment : BaseFragment<SourceViewModel, FragmentDirectSourceB
         container: ViewGroup?
     ): FragmentDirectSourceBinding {
         return FragmentDirectSourceBinding.inflate(inflater, container, false)
-    }
-
-    override fun injectDependencies(fragmentComponent: FragmentComponent) {
-        return fragmentComponent.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

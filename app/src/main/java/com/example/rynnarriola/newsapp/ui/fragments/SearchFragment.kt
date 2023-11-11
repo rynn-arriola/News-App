@@ -3,32 +3,29 @@ package com.example.rynnarriola.newsapp.ui.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rynnarriola.newsapp.adapter.TopHeadLinesAdapter
 import com.example.rynnarriola.newsapp.base.BaseFragment
 import com.example.rynnarriola.newsapp.data.model.Article
 import com.example.rynnarriola.newsapp.databinding.FragmentSearchBinding
-import com.example.rynnarriola.newsapp.di.components.FragmentComponent
 import com.example.rynnarriola.newsapp.util.UiState
 import com.example.rynnarriola.newsapp.viewmodel.SearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
 
-    private val viewModel by viewModels<SearchViewModel> { viewModelFactory }
+    private val viewModel by viewModels<SearchViewModel> ()
 
     @Inject
     lateinit var adapter : TopHeadLinesAdapter
@@ -37,8 +34,6 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?
     ) = FragmentSearchBinding.inflate(inflater, container, false)
-
-    override fun injectDependencies(fragmentComponent: FragmentComponent) = fragmentComponent.inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

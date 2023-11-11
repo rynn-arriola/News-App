@@ -12,8 +12,9 @@ import com.example.rynnarriola.newsapp.base.BaseFragment
 import com.example.rynnarriola.newsapp.base.BaseViewModel
 import com.example.rynnarriola.newsapp.data.model.Country
 import com.example.rynnarriola.newsapp.databinding.FragmentLanguageBinding
-import com.example.rynnarriola.newsapp.di.components.FragmentComponent
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LanguagesFragment : BaseFragment<BaseViewModel, FragmentLanguageBinding>() {
 
     private val countriesAdapter by lazy { CountriesAdapter(::selectedCountry) }
@@ -26,9 +27,6 @@ class LanguagesFragment : BaseFragment<BaseViewModel, FragmentLanguageBinding>()
         inflater: LayoutInflater,
         container: ViewGroup?
     ) = FragmentLanguageBinding.inflate(inflater, container, false)
-
-    override fun injectDependencies(fragmentComponent: FragmentComponent) =
-        fragmentComponent.inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.rynnarriola.newsapp.databinding.FragmentNewsSourceBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewsSourcesFragment : Fragment() {
 
     private var _binding: FragmentNewsSourceBinding? = null

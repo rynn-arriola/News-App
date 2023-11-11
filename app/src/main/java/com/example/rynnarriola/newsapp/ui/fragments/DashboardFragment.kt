@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.rynnarriola.newsapp.R
 import com.example.rynnarriola.newsapp.databinding.FragmentDashboardBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DashboardFragment: Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null

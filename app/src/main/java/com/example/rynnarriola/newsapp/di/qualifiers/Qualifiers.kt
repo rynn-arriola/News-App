@@ -1,26 +1,12 @@
 package com.example.rynnarriola.newsapp.di.qualifiers
 
-import androidx.lifecycle.ViewModel
-import dagger.MapKey
 import javax.inject.Qualifier
-import kotlin.reflect.KClass
+
 
 @Qualifier
-@Retention(AnnotationRetention.SOURCE)
-annotation class ApplicationContext
-
-@Qualifier
-@Retention(AnnotationRetention.SOURCE)
-annotation class ActivityContext
-
-@Qualifier
-@Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.BINARY)
 annotation class BaseUrl
 
 @Qualifier
-@Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.BINARY)
 annotation class ApiKey
-
-@MapKey
-@Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
-annotation class ViewModelKey(val value: KClass<out ViewModel>)

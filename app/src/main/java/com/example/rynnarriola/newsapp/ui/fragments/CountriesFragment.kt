@@ -14,14 +14,15 @@ import com.example.rynnarriola.newsapp.adapter.CountriesAdapter
 import com.example.rynnarriola.newsapp.base.BaseFragment
 import com.example.rynnarriola.newsapp.data.model.Country
 import com.example.rynnarriola.newsapp.databinding.FragmentCountriesBinding
-import com.example.rynnarriola.newsapp.di.components.FragmentComponent
 import com.example.rynnarriola.newsapp.util.UiState
 import com.example.rynnarriola.newsapp.viewmodel.CountriesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CountriesFragment : BaseFragment<CountriesViewModel, FragmentCountriesBinding>() {
 
-    private val viewModel by viewModels<CountriesViewModel> { viewModelFactory }
+    private val viewModel by viewModels<CountriesViewModel>()
 
     private val countriesAdapter by lazy { CountriesAdapter(::selectedCountry) }
     override fun createBinding(
@@ -29,10 +30,6 @@ class CountriesFragment : BaseFragment<CountriesViewModel, FragmentCountriesBind
         container: ViewGroup?
     ): FragmentCountriesBinding {
         return FragmentCountriesBinding.inflate(inflater, container, false)
-    }
-
-    override fun injectDependencies(fragmentComponent: FragmentComponent) {
-        fragmentComponent.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

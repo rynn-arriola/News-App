@@ -1,15 +1,14 @@
 package com.example.rynnarriola.newsapp.di.modules
 
-import android.content.Context
-import com.example.rynnarriola.newsapp.NewsApplication
-import com.example.rynnarriola.newsapp.data.api.NetworkService
 import com.example.rynnarriola.newsapp.data.api.ApiKeyInterceptor
+import com.example.rynnarriola.newsapp.data.api.NetworkService
 import com.example.rynnarriola.newsapp.di.qualifiers.ApiKey
-import com.example.rynnarriola.newsapp.di.qualifiers.ApplicationContext
 import com.example.rynnarriola.newsapp.di.qualifiers.BaseUrl
 import com.example.rynnarriola.newsapp.util.Constants
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,14 +18,8 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-class ApplicationModule(private val application : NewsApplication) {
-
-    @ApplicationContext
-    @Provides
-    @Singleton
-    fun provideApplication(): Context {
-        return application
-    }
+@InstallIn(SingletonComponent::class)
+class ApplicationModule {
 
     @Provides
     @Singleton
