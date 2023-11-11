@@ -56,9 +56,6 @@
         android:id="@+id/searchFragment"
         android:name="com.example.rynnarriola.newsapp.ui.fragments.SearchFragment"
         android:label="SearchFragment">
-        <action
-            android:id="@+id/action_searchFragment_to_searchNewsFragment"
-            app:destination="@id/searchNewsFragment" />
     </fragment>
     <fragment
         android:id="@+id/directSourceFragment"
@@ -86,14 +83,6 @@
 
         <argument
             android:name="languageCode"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchNewsFragment"
-        android:name="com.example.rynnarriola.newsapp.ui.fragments.SearchNewsFragment"
-        android:label="SearchNewsFragment">
-        <argument
-            android:name="query"
             app:argType="string" />
     </fragment>
 
