@@ -4,73 +4,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.ComposeView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rynnarriola.newsapp.adapter.CountriesAdapter
-import com.example.rynnarriola.newsapp.base.BaseFragment
-import com.example.rynnarriola.newsapp.data.model.Country
-import com.example.rynnarriola.newsapp.databinding.FragmentCountriesBinding
-import com.example.rynnarriola.newsapp.util.UiState
+import com.example.rynnarriola.newsapp.ui.compose.CountriesScreen
 import com.example.rynnarriola.newsapp.viewmodel.CountriesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CountriesFragment : BaseFragment<CountriesViewModel, FragmentCountriesBinding>() {
+class CountriesFragment : Fragment() {
 
     private val viewModel by viewModels<CountriesViewModel>()
 
-    private val countriesAdapter by lazy { CountriesAdapter(::selectedCountry) }
-    override fun createBinding(
+    private lateinit var composeView: ComposeView
+
+    override fun onCreateView(
         inflater: LayoutInflater,
-        container: ViewGroup?
-    ): FragmentCountriesBinding {
-        return FragmentCountriesBinding.inflate(inflater, container, false)
-    }
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View = ComposeView(requireContext()).also { composeView = it }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupObserver()
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = countriesAdapter
+        composeView.setContent {
+            val uiState by viewModel.uiState.collectAsState()
+            CountriesScreen(uiState = uiState , findNavController())
         }
-    }
-    private fun setupObserver() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect {
-                    when (it) {
-                        is UiState.Success -> {
-                            binding.progressBar.visibility = View.GONE
-                            binding.recyclerView.visibility = View.VISIBLE
-                            binding.errorLayout.root.visibility = View.GONE
-                            countriesAdapter.submitList(it.data)
-                        }
-                        is UiState.Loading -> {
-                            binding.progressBar.visibility = View.VISIBLE
-                            binding.recyclerView.visibility = View.GONE
-                            binding.errorLayout.root.visibility = View.GONE
-                        }
-                        is UiState.Error -> {
-                            binding.progressBar.visibility = View.GONE
-                            binding.recyclerView.visibility = View.GONE
-                            binding.errorLayout.root.visibility = View.VISIBLE
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private fun selectedCountry(country: Country) {
-        val action = CountriesFragmentDirections
-            .actionCountriesFragmentToCountriesNewsFragment(countryCode = country.code)
-        findNavController().navigate(action)
     }
 }

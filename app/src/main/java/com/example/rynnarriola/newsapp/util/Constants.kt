@@ -1,6 +1,8 @@
 package com.example.rynnarriola.newsapp.util
 
 import com.example.rynnarriola.newsapp.data.model.Country
+import com.example.rynnarriola.newsapp.data.model.Language
+
 
 object Constants {
 
@@ -63,5 +65,21 @@ object Constants {
         Country("gb", "United Kingdom"),
         Country("us", "United States"),
         Country("ve", "Venezuela")
+    )
+
+    val LANGUAGES = listOf(
+        Language("ar", "Argentina"),
+        Language("de", "German"),
+        Language("en", "English"),
+        Language("es", "Spanish"),
+        Language("fr", "French"),
+        Language("he", "Hindi"),
+        Language("it", "Italian"),
+        Language("nl", "Dutch"),
+        Language("no", "Norwegian"),
+        Language("pt", "Portuguese"),
+        Language("ru", "Russian"),
+        Language("sv", "Swedish"),
+        Language("zh", "China")
     )
 }

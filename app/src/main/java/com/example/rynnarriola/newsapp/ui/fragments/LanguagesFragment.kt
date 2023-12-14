@@ -4,52 +4,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.ComposeView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rynnarriola.newsapp.R
-import com.example.rynnarriola.newsapp.adapter.CountriesAdapter
-import com.example.rynnarriola.newsapp.base.BaseFragment
-import com.example.rynnarriola.newsapp.base.BaseViewModel
-import com.example.rynnarriola.newsapp.data.model.Country
-import com.example.rynnarriola.newsapp.databinding.FragmentLanguageBinding
+import com.example.rynnarriola.newsapp.ui.compose.LanguageScreen
+import com.example.rynnarriola.newsapp.viewmodel.LanguageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LanguagesFragment : BaseFragment<BaseViewModel, FragmentLanguageBinding>() {
+class LanguagesFragment : Fragment() {
 
-    private val countriesAdapter by lazy { CountriesAdapter(::selectedCountry) }
+    private val viewModel by viewModels<LanguageViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var composeView: ComposeView
 
-    override fun createBinding(
+    override fun onCreateView(
         inflater: LayoutInflater,
-        container: ViewGroup?
-    ) = FragmentLanguageBinding.inflate(inflater, container, false)
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View = ComposeView(requireContext()).also { composeView = it }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = countriesAdapter
+        composeView.setContent {
+            val uiState by viewModel.uiState.collectAsState()
+            LanguageScreen(uiState = uiState , findNavController())
         }
-        val countryArray = resources.getStringArray(R.array.language_list)
-
-        val languageList = countryArray.mapNotNull { item ->
-            val cleanedItem = item.replace(" ", "")
-            cleanedItem.split(",").takeIf { it.size == 2 }?.let { (code, name) ->
-                Country(name, code.trim())
-            }
-        }.toMutableList()
-
-        countriesAdapter.submitList(languageList)
-    }
-
-    private fun selectedCountry(country: Country) {
-        val action = LanguagesFragmentDirections
-            .actionLanguagesFragmentToLanguageNewsFragment(languageCode = country.code)
-        findNavController().navigate(action)
     }
 }

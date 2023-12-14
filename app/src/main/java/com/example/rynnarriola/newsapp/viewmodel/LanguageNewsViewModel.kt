@@ -2,7 +2,7 @@ package com.example.rynnarriola.newsapp.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.example.rynnarriola.newsapp.base.BaseViewModel
-import com.example.rynnarriola.newsapp.data.model.Article
+import com.example.rynnarriola.newsapp.data.model.LanguageSource
 import com.example.rynnarriola.newsapp.data.repository.NewsRepo
 import com.example.rynnarriola.newsapp.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,17 +13,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CountriesNewsViewModel @Inject constructor(
+class LanguageNewsViewModel @Inject constructor(
     private val newsRepo: NewsRepo
 ): BaseViewModel() {
 
-    private val _uiState = MutableStateFlow<UiState<List<Article>>>(UiState.Loading)
+    private val _uiState = MutableStateFlow<UiState<List<LanguageSource>>>(UiState.Loading)
 
-    val uiState: StateFlow<UiState<List<Article>>> = _uiState
+    val uiState: StateFlow<UiState<List<LanguageSource>>> = _uiState
 
-    fun fetchNews(countryCode: String) {
+    fun fetchNews(languageCode: String) {
         viewModelScope.launch {
-            newsRepo.getTopHeadlines(countryCode)
+            newsRepo.getNewsByLanguage(languageCode)
                 .catch { e ->
                     _uiState.value = UiState.Error(e.toString())
                 }.collect {

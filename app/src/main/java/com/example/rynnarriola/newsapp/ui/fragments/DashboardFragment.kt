@@ -4,51 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.rynnarriola.newsapp.R
-import com.example.rynnarriola.newsapp.databinding.FragmentDashboardBinding
+import com.example.rynnarriola.newsapp.ui.compose.DashboardScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DashboardFragment: Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
-    private val binding get() = _binding!!
-
+    private lateinit var composeView: ComposeView
 
     override fun onCreateView(
-
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = FragmentDashboardBinding.inflate(inflater, container, false).also {
-        _binding = it
-
-    }.root
+    ): View = ComposeView(requireContext()).also { composeView = it }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.topHeadLinesButton.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_topHeadLinesFragment)
-        }
-        binding.newsSourcesButton.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_newsSourcesFragment)
-        }
-        binding.countriesButton.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_countriesFragment)
-        }
-        binding.languagesButton.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_languagesFragment)
-        }
-        binding.searchButton.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_searchFragment)
+        composeView.setContent {
+            DashboardScreen(findNavController())
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 }

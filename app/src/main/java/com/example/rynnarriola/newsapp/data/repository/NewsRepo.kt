@@ -3,6 +3,7 @@ package com.example.rynnarriola.newsapp.data.repository
 import com.example.rynnarriola.newsapp.data.api.NetworkService
 import com.example.rynnarriola.newsapp.data.model.Article
 import com.example.rynnarriola.newsapp.data.model.Country
+import com.example.rynnarriola.newsapp.data.model.Language
 import com.example.rynnarriola.newsapp.data.model.LanguageSource
 import com.example.rynnarriola.newsapp.util.Constants
 import kotlinx.coroutines.flow.Flow
@@ -50,6 +51,12 @@ class NewsRepo @Inject constructor(private val networkService: NetworkService) {
     fun getCountries(): Flow<List<Country>> {
         return flow {
             emit(Constants.COUNTRIES)
+        }
+    }
+
+    fun getLanguages(): Flow<List<Language>> {
+        return flow {
+            emit(Constants.LANGUAGES)
         }
     }
 
