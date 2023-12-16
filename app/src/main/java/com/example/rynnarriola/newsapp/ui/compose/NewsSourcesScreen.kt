@@ -11,8 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.rynnarriola.newsapp.ui.fragments.NewsSourcesFragmentDirections
-
+import com.example.rynnarriola.newsapp.base.Screen
 
 @Composable
 fun NewsSourcesScreen(navController: NavController) {
@@ -24,39 +23,27 @@ fun NewsSourcesScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ButtonComponent(text = "Bloomberg") {
-            val action = NewsSourcesFragmentDirections
-                .actionNewsSourcesFragmentToDirectSourceFragment(newsSource = "bloomberg")
-            navController.navigate(action)
+            navController.navigate(Screen.DirectSourceScreen.withArgs("bloomberg"))
         }
         Spacer(modifier = Modifier.height(16.dp))
         ButtonComponent(text = "Wall Street Journal") {
-            val action = NewsSourcesFragmentDirections
-                .actionNewsSourcesFragmentToDirectSourceFragment(newsSource = "the-wall-street-journal")
-            navController.navigate(action)
+            navController.navigate(Screen.DirectSourceScreen.withArgs("the-wall-street-journal"))
         }
         Spacer(modifier = Modifier.height(16.dp))
         ButtonComponent(text = "NBC News") {
-            val action = NewsSourcesFragmentDirections
-                .actionNewsSourcesFragmentToDirectSourceFragment(newsSource = "nbc-news")
-            navController.navigate(action)
+            navController.navigate(Screen.DirectSourceScreen.withArgs("nbc-news"))
         }
         Spacer(modifier = Modifier.height(16.dp))
         ButtonComponent(text = "CNN") {
-            val action = NewsSourcesFragmentDirections
-                .actionNewsSourcesFragmentToDirectSourceFragment(newsSource = "cnn")
-            navController.navigate(action)
+            navController.navigate(Screen.DirectSourceScreen.withArgs("cnn"))
         }
         Spacer(modifier = Modifier.height(16.dp))
         ButtonComponent(text = "USA Today") {
-            val action = NewsSourcesFragmentDirections
-                .actionNewsSourcesFragmentToDirectSourceFragment(newsSource = "usa-today")
-            navController.navigate(action)
+            navController.navigate(Screen.DirectSourceScreen.withArgs("usa-today"))
         }
         Spacer(modifier = Modifier.height(16.dp))
         ButtonComponent(text = "Reuters") {
-            val action = NewsSourcesFragmentDirections
-                .actionNewsSourcesFragmentToDirectSourceFragment(newsSource = "reuters")
-            navController.navigate(action)
+            navController.navigate(Screen.DirectSourceScreen.withArgs("reuters"))
         }
     }
 }

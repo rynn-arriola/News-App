@@ -11,22 +11,29 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.example.rynnarriola.newsapp.base.Screen
 import com.example.rynnarriola.newsapp.base.ShowError
 import com.example.rynnarriola.newsapp.base.ShowLoading
 import com.example.rynnarriola.newsapp.data.model.Language
-import com.example.rynnarriola.newsapp.ui.fragments.LanguagesFragmentDirections
 import com.example.rynnarriola.newsapp.util.UiState
+import com.example.rynnarriola.newsapp.viewmodel.LanguageViewModel
 
 @Composable
-fun LanguageScreen(uiState: UiState<List<Language>>, navController: NavController) {
+fun LanguageScreen(viewModel: LanguageViewModel = hiltViewModel(), navController: NavController) {
+
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
     when (uiState) {
         is UiState.Success -> {
-            LanguageAdapter(uiState.data, navController)
+            LanguageAdapter((uiState as UiState.Success<List<Language>>).data, navController)
         }
 
         is UiState.Loading -> {
@@ -34,7 +41,7 @@ fun LanguageScreen(uiState: UiState<List<Language>>, navController: NavControlle
         }
 
         is UiState.Error -> {
-            ShowError(uiState.message)
+            ShowError((uiState as UiState.Error).message)
         }
     }
 }
@@ -55,9 +62,7 @@ fun LanguageItem(language: Language, navController: NavController) {
             .fillMaxWidth()
             .padding(8.dp)
             .clickable {
-                val action = LanguagesFragmentDirections
-                    .actionLanguagesFragmentToLanguageNewsFragment(languageCode = language.code)
-                navController.navigate(action)
+               navController.navigate(Screen.LanguageNewsScreen.withArgs(language.code))
             }
             .background(MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(8.dp)) // Set the background color and rounded corners
     ) {

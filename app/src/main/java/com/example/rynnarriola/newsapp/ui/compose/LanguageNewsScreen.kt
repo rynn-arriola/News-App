@@ -10,19 +10,30 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.rynnarriola.newsapp.base.ShowError
 import com.example.rynnarriola.newsapp.base.ShowLoading
 import com.example.rynnarriola.newsapp.data.model.LanguageSource
 import com.example.rynnarriola.newsapp.util.UiState
+import com.example.rynnarriola.newsapp.viewmodel.LanguageNewsViewModel
 
 @Composable
-fun LanguageNewsScreen(uiState: UiState<List<LanguageSource>>, onNewsClick: (url: String) -> Unit) {
+fun LanguageNewsScreen(languageCode : String?, viewModel: LanguageNewsViewModel = hiltViewModel(), onNewsClick: (url: String) -> Unit) {
+
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    if (languageCode != null) {
+        viewModel.fetchNews(languageCode)
+    }
+
     when (uiState) {
         is UiState.Success -> {
-            LanguageArticleList(uiState.data, onNewsClick)
+            LanguageArticleList((uiState as UiState.Success<List<LanguageSource>>).data, onNewsClick)
         }
 
         is UiState.Loading -> {
@@ -30,7 +41,7 @@ fun LanguageNewsScreen(uiState: UiState<List<LanguageSource>>, onNewsClick: (url
         }
 
         is UiState.Error -> {
-            ShowError(uiState.message)
+            ShowError((uiState as UiState.Error).message)
         }
     }
 }

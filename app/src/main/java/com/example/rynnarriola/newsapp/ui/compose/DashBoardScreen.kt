@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.rynnarriola.newsapp.R
+import com.example.rynnarriola.newsapp.base.Screen
 
 
 @Composable
@@ -32,23 +32,23 @@ fun DashboardScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ButtonComponent(text = "Top Headlines") {
-            navController.navigate(R.id.action_dashboardFragment_to_topHeadLinesFragment)
+            navController.navigate(Screen.TopHeadLinesScreen.route)
         }
         Spacer(modifier = Modifier.height(16.dp))
         ButtonComponent(text = "News Sources") {
-            navController.navigate(R.id.action_dashboardFragment_to_newsSourcesFragment)
+            navController.navigate(Screen.NewsSourceScreen.route)
         }
         Spacer(modifier = Modifier.height(16.dp))
         ButtonComponent(text = "Countries") {
-            navController.navigate(R.id.action_dashboardFragment_to_countriesFragment)
+            navController.navigate(Screen.CountriesScreen.route)
         }
         Spacer(modifier = Modifier.height(16.dp))
         ButtonComponent(text = "Languages") {
-            navController.navigate(R.id.action_dashboardFragment_to_languagesFragment)
+            navController.navigate(Screen.LanguagesScreen.route)
         }
         Spacer(modifier = Modifier.height(16.dp))
         ButtonComponent(text = "Search") {
-            navController.navigate(R.id.action_dashboardFragment_to_searchFragment)
+            navController.navigate(Screen.SearchScreen.route)
         }
     }
 }

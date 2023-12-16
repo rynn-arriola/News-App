@@ -10,22 +10,28 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.example.rynnarriola.newsapp.base.ShowError
 import com.example.rynnarriola.newsapp.base.ShowLoading
 import com.example.rynnarriola.newsapp.data.model.Article
 import com.example.rynnarriola.newsapp.data.model.Source
 import com.example.rynnarriola.newsapp.util.UiState
+import com.example.rynnarriola.newsapp.viewmodel.TopHeadLinesViewModel
 
 @Composable
-fun TopHeadlineScreen(uiState: UiState<List<Article>>, onNewsClick: (url: String) -> Unit) {
+fun TopHeadlineScreen(viewModel: TopHeadLinesViewModel = hiltViewModel(), onNewsClick: (url: String) -> Unit) {
+
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     when (uiState) {
         is UiState.Success -> {
-            ArticleList(uiState.data, onNewsClick)
+            ArticleList((uiState as UiState.Success<List<Article>>).data, onNewsClick)
         }
 
         is UiState.Loading -> {
@@ -33,7 +39,7 @@ fun TopHeadlineScreen(uiState: UiState<List<Article>>, onNewsClick: (url: String
         }
 
         is UiState.Error -> {
-            ShowError(uiState.message)
+            ShowError((uiState as UiState.Error).message)
         }
     }
 }

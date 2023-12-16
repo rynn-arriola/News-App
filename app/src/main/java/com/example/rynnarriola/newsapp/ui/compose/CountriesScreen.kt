@@ -11,23 +11,30 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.example.rynnarriola.newsapp.base.Screen
 import com.example.rynnarriola.newsapp.base.ShowError
 import com.example.rynnarriola.newsapp.base.ShowLoading
 import com.example.rynnarriola.newsapp.data.model.Country
-import com.example.rynnarriola.newsapp.ui.fragments.CountriesFragmentDirections
 import com.example.rynnarriola.newsapp.util.UiState
+import com.example.rynnarriola.newsapp.viewmodel.CountriesViewModel
 
 
 @Composable
-fun CountriesScreen(uiState: UiState<List<Country>>, navController: NavController) {
+fun CountriesScreen(viewModel: CountriesViewModel = hiltViewModel() , navController: NavController) {
+
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
     when (uiState) {
         is UiState.Success -> {
-            CountriesAdapter(uiState.data, navController)
+            CountriesAdapter((uiState as UiState.Success<List<Country>>).data, navController)
         }
 
         is UiState.Loading -> {
@@ -35,7 +42,7 @@ fun CountriesScreen(uiState: UiState<List<Country>>, navController: NavControlle
         }
 
         is UiState.Error -> {
-            ShowError(uiState.message)
+            ShowError((uiState as UiState.Error).message)
         }
     }
 }
@@ -56,9 +63,7 @@ fun CountryItem(country: Country, navController: NavController) {
             .fillMaxWidth()
             .padding(8.dp)
             .clickable {
-                val action = CountriesFragmentDirections
-                    .actionCountriesFragmentToCountriesNewsFragment(countryCode = country.code)
-                navController.navigate(action)
+                navController.navigate(Screen.CountriesNewsScreen.withArgs(country.code))
             }
             .background(MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(8.dp)) // Set the background color and rounded corners
     ) {
