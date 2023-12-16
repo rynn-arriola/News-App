@@ -1,9 +1,11 @@
 package com.example.rynnarriola.newsapp.ui.compose
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -15,22 +17,41 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.example.rynnarriola.newsapp.base.NewsTopAppBar
 import com.example.rynnarriola.newsapp.base.ShowError
 import com.example.rynnarriola.newsapp.base.ShowLoading
 import com.example.rynnarriola.newsapp.data.model.Article
+import com.example.rynnarriola.newsapp.util.Constants
 import com.example.rynnarriola.newsapp.util.UiState
 import com.example.rynnarriola.newsapp.viewmodel.SearchViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchScreen(viewModel: SearchViewModel = hiltViewModel(), onClick: (url: String) -> Unit) {
+fun SearchScreen(navController: NavController, viewModel: SearchViewModel = hiltViewModel(), onClick: (url: String) -> Unit) {
     // Observe the UI state using the provided ViewModel
     val uiState by viewModel.uiState.collectAsState()
+    Scaffold(
+        topBar = { NewsTopAppBar(title = Constants.SEARCH_NEWS, showBackArrow = true
+        ) { navController.popBackStack() }
+        },
+        content = { padding -> SearchContent(padding, viewModel, uiState, onClick) }
+    )
+
+}
+@Composable
+private fun SearchContent(
+    padding: PaddingValues,
+    viewModel: SearchViewModel,
+    uiState: UiState<List<Article>>,
+    onClick: (url: String) -> Unit
+){
 
     // Local variable to store the current search query
     var searchQuery by remember { mutableStateOf("") }
 
     // Set up the Compose UI
-    Column {
+    Column(modifier = Modifier.padding(padding)) {
         // Search bar
         SearchBar(
             searchQuery = searchQuery,
@@ -43,7 +64,7 @@ fun SearchScreen(viewModel: SearchViewModel = hiltViewModel(), onClick: (url: St
         // Display the UI state based on the provided data
         when (uiState) {
             is UiState.Success -> {
-                ArticleList((uiState as UiState.Success<List<Article>>).data, onClick)
+                ArticleList(uiState.data, onClick)
             }
 
             is UiState.Loading -> {
@@ -51,7 +72,7 @@ fun SearchScreen(viewModel: SearchViewModel = hiltViewModel(), onClick: (url: St
             }
 
             is UiState.Error -> {
-                ShowError((uiState as UiState.Error).message)
+                ShowError(uiState.message)
             }
         }
     }

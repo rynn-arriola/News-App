@@ -3,12 +3,16 @@ package com.example.rynnarriola.newsapp.ui.compose
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,29 +23,55 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.example.rynnarriola.newsapp.base.NewsTopAppBar
 import com.example.rynnarriola.newsapp.base.Screen
 import com.example.rynnarriola.newsapp.base.ShowError
 import com.example.rynnarriola.newsapp.base.ShowLoading
 import com.example.rynnarriola.newsapp.data.model.Language
+import com.example.rynnarriola.newsapp.util.Constants
 import com.example.rynnarriola.newsapp.util.UiState
 import com.example.rynnarriola.newsapp.viewmodel.LanguageViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LanguageScreen(viewModel: LanguageViewModel = hiltViewModel(), navController: NavController) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    when (uiState) {
-        is UiState.Success -> {
-            LanguageAdapter((uiState as UiState.Success<List<Language>>).data, navController)
+    Scaffold(
+        topBar = {
+            NewsTopAppBar(
+                title = Constants.LANGUAGE_SOURCES, showBackArrow = true
+            ) { navController.popBackStack() }
+        },
+        content = { padding ->
+            LanguageContent(
+                padding = padding,
+                uiState = uiState,
+                navController = navController
+            )
         }
+    )
+}
+@Composable
+private fun LanguageContent(
+    padding: PaddingValues,
+    uiState: UiState<List<Language>>,
+    navController: NavController
+) {
+    Column(modifier = Modifier.padding(padding)) {
+        when (uiState) {
+            is UiState.Success -> {
+                LanguageAdapter(uiState.data, navController)
+            }
 
-        is UiState.Loading -> {
-            ShowLoading()
-        }
+            is UiState.Loading -> {
+                ShowLoading()
+            }
 
-        is UiState.Error -> {
-            ShowError((uiState as UiState.Error).message)
+            is UiState.Error -> {
+                ShowError(uiState.message)
+            }
         }
     }
 }
@@ -62,7 +92,7 @@ fun LanguageItem(language: Language, navController: NavController) {
             .fillMaxWidth()
             .padding(8.dp)
             .clickable {
-               navController.navigate(Screen.LanguageNewsScreen.withArgs(language.code))
+               navController.navigate(Screen.LanguageNewsScreen.withArgs(language.code, language.language))
             }
             .background(MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(8.dp)) // Set the background color and rounded corners
     ) {

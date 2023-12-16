@@ -2,12 +2,15 @@ package com.example.rynnarriola.newsapp.ui.compose
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -17,29 +20,52 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.example.rynnarriola.newsapp.base.NewsTopAppBar
 import com.example.rynnarriola.newsapp.base.ShowError
 import com.example.rynnarriola.newsapp.base.ShowLoading
 import com.example.rynnarriola.newsapp.data.model.Article
 import com.example.rynnarriola.newsapp.data.model.Source
+import com.example.rynnarriola.newsapp.util.Constants
 import com.example.rynnarriola.newsapp.util.UiState
 import com.example.rynnarriola.newsapp.viewmodel.TopHeadLinesViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopHeadlineScreen(viewModel: TopHeadLinesViewModel = hiltViewModel(), onNewsClick: (url: String) -> Unit) {
-
+fun TopHeadLineScreen(
+    navController: NavController,
+    viewModel: TopHeadLinesViewModel = hiltViewModel(),
+    onNewsClick: (url: String) -> Unit
+) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    when (uiState) {
-        is UiState.Success -> {
-            ArticleList((uiState as UiState.Success<List<Article>>).data, onNewsClick)
-        }
+    Scaffold(
+        topBar = { NewsTopAppBar(title = Constants.TOP_HEADLINES, showBackArrow = true
+        ) { navController.popBackStack() }
+        },
+        content = { padding -> TopHeadLinesContent(padding, uiState, onNewsClick) }
+    )
+}
 
-        is UiState.Loading -> {
-            ShowLoading()
-        }
+@Composable
+private fun TopHeadLinesContent(
+    padding: PaddingValues,
+    uiState: UiState<List<Article>>,
+    onNewsClick: (url: String) -> Unit
+) {
+    Column(modifier = Modifier.padding(padding)) {
+        when (uiState) {
+            is UiState.Success -> {
+                ArticleList(uiState.data ,onNewsClick)
+            }
 
-        is UiState.Error -> {
-            ShowError((uiState as UiState.Error).message)
+            is UiState.Loading -> {
+                ShowLoading()
+            }
+
+            is UiState.Error -> {
+                ShowError(uiState.message)
+            }
         }
     }
 }

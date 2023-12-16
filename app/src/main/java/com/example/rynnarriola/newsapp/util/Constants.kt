@@ -10,6 +10,12 @@ object Constants {
     const val COUNTRY = "us"
     const val DEBOUNCE_TIMEOUT = 300L
     const val MIN_SEARCH_CHAR = 3
+    const val APP_NAME = "NewsApp"
+    const val TOP_HEADLINES = "TopHeadLines"
+    const val NEWS_SOURCES = "News Sources"
+    const val COUNTRIES_SOURCES = "Pick A Country Source"
+    const val LANGUAGE_SOURCES = "Pick A Language Source"
+    const val SEARCH_NEWS = "Search News"
 
     val COUNTRIES = listOf(
         Country("ar", "Argentina"),
