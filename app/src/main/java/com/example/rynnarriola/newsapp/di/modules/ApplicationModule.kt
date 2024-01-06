@@ -5,6 +5,8 @@ import com.example.rynnarriola.newsapp.data.api.NetworkService
 import com.example.rynnarriola.newsapp.di.qualifiers.ApiKey
 import com.example.rynnarriola.newsapp.di.qualifiers.BaseUrl
 import com.example.rynnarriola.newsapp.util.Constants
+import com.example.rynnarriola.newsapp.util.DefaultDispatcherProvider
+import com.example.rynnarriola.newsapp.util.DispatcherProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,6 +48,10 @@ class ApplicationModule {
             .readTimeout(20, TimeUnit.SECONDS)
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideDispatcherProvider(): DispatcherProvider = DefaultDispatcherProvider()
 
     @Provides
     @Singleton
