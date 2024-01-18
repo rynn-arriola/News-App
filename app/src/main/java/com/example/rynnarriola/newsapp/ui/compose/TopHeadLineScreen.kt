@@ -48,7 +48,7 @@ fun TopHeadLineScreen(
 }
 
 @Composable
-private fun TopHeadLinesContent(
+fun TopHeadLinesContent(
     padding: PaddingValues,
     uiState: UiState<List<Article>>,
     onNewsClick: (url: String) -> Unit
