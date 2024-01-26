@@ -25,8 +25,8 @@ import coil.compose.AsyncImage
 import com.example.rynnarriola.newsapp.base.NewsTopAppBar
 import com.example.rynnarriola.newsapp.base.ShowError
 import com.example.rynnarriola.newsapp.base.ShowLoading
-import com.example.rynnarriola.newsapp.data.model.Article
-import com.example.rynnarriola.newsapp.data.model.Source
+import com.example.rynnarriola.newsapp.local.entity.Article
+import com.example.rynnarriola.newsapp.local.entity.Source
 import com.example.rynnarriola.newsapp.util.Constants
 import com.example.rynnarriola.newsapp.util.UiState
 import com.example.rynnarriola.newsapp.viewmodel.TopHeadLinesViewModel

@@ -2,9 +2,10 @@ package com.example.rynnarriola.newsapp.repo
 
 import app.cash.turbine.test
 import com.example.rynnarriola.newsapp.data.api.NetworkService
-import com.example.rynnarriola.newsapp.data.model.Article
-import com.example.rynnarriola.newsapp.data.model.Source
+import com.example.rynnarriola.newsapp.data.model.ApiArticle
+import com.example.rynnarriola.newsapp.data.model.ApiSource
 import com.example.rynnarriola.newsapp.data.model.TopHeadlinesResponse
+import com.example.rynnarriola.newsapp.data.model.toArticleEntity
 import com.example.rynnarriola.newsapp.data.repository.NewsRepo
 import com.example.rynnarriola.newsapp.util.Constants.COUNTRY
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -34,16 +35,16 @@ class TopHeadlineRepositoryTest {
     @Test
     fun getTopHeadlines_whenNetworkServiceResponseSuccess_shouldReturnSuccess() {
         runTest {
-            val source = Source(id = "sourceId", name = "sourceName")
-            val article = Article(
+            val source = ApiSource(id = "sourceId", name = "sourceName")
+            val article = ApiArticle(
                 title = "title",
                 description = "description",
                 url = "url",
                 imageUrl = "urlToImage",
-                source = source
+                apiSource = source
             )
 
-            val articles = mutableListOf<Article>()
+            val articles = mutableListOf<ApiArticle>()
             articles.add(article)
 
             val topHeadlinesResponse = TopHeadlinesResponse(
@@ -53,7 +54,7 @@ class TopHeadlineRepositoryTest {
             Mockito.doReturn(topHeadlinesResponse).`when`(networkService).getTopHeadlines(COUNTRY)
 
             newsRepo.getTopHeadlines(COUNTRY).test {
-                assertEquals(topHeadlinesResponse.articles, awaitItem())
+                assertEquals(topHeadlinesResponse.articles.map { it.toArticleEntity() }, awaitItem())
                 cancelAndIgnoreRemainingEvents()
             }
 

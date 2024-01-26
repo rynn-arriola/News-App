@@ -1,15 +1,24 @@
 package com.example.rynnarriola.newsapp.di.modules
 
+import android.content.Context
+import androidx.room.Room
 import com.example.rynnarriola.newsapp.data.api.ApiKeyInterceptor
 import com.example.rynnarriola.newsapp.data.api.NetworkService
 import com.example.rynnarriola.newsapp.di.qualifiers.ApiKey
 import com.example.rynnarriola.newsapp.di.qualifiers.BaseUrl
+import com.example.rynnarriola.newsapp.di.qualifiers.DatabaseName
+import com.example.rynnarriola.newsapp.local.DatabaseService
+import com.example.rynnarriola.newsapp.local.NewsDataBase
+import com.example.rynnarriola.newsapp.local.NewsDataBaseService
 import com.example.rynnarriola.newsapp.util.Constants
 import com.example.rynnarriola.newsapp.util.DefaultDispatcherProvider
+import com.example.rynnarriola.newsapp.util.DefaultNetworkHelper
 import com.example.rynnarriola.newsapp.util.DispatcherProvider
+import com.example.rynnarriola.newsapp.util.NetworkHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -52,6 +61,35 @@ class ApplicationModule {
     @Provides
     @Singleton
     fun provideDispatcherProvider(): DispatcherProvider = DefaultDispatcherProvider()
+
+    @Provides
+    @Singleton
+    fun provideNetworkHelper(@ApplicationContext context: Context): NetworkHelper {
+        return DefaultNetworkHelper(context)
+    }
+
+    @DatabaseName
+    @Provides
+    fun provideDatabaseName(): String = "news-database"
+
+    @Provides
+    @Singleton
+    fun provideNewsDatabase(
+        @ApplicationContext context: Context,
+        @DatabaseName databaseName: String
+    ): NewsDataBase {
+        return Room.databaseBuilder(
+            context,
+            NewsDataBase::class.java,
+            databaseName
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDatabaseService(newsDataBase: NewsDataBase): DatabaseService {
+        return NewsDataBaseService(newsDataBase)
+    }
 
     @Provides
     @Singleton

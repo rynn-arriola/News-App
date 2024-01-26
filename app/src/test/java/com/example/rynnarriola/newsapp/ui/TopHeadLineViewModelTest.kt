@@ -1,7 +1,7 @@
 package com.example.rynnarriola.newsapp.ui
 
 import app.cash.turbine.test
-import com.example.rynnarriola.newsapp.data.model.Article
+import com.example.rynnarriola.newsapp.local.entity.Article
 import com.example.rynnarriola.newsapp.data.repository.NewsRepo
 import com.example.rynnarriola.newsapp.util.Constants.COUNTRY
 import com.example.rynnarriola.newsapp.util.DispatcherProvider

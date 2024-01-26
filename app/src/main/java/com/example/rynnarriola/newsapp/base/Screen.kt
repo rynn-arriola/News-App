@@ -4,6 +4,7 @@ sealed class Screen(val route : String) {
 
     object DashBoardScreen: Screen("dashboard_screen")
     object TopHeadLinesScreen: Screen("top_head_lines_screen")
+    object OfflineScreen: Screen("off_line_screen")
     object NewsSourceScreen: Screen("news_source_screen")
     object CountriesScreen: Screen("countries_screen")
     object LanguagesScreen: Screen("language_screen")

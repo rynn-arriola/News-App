@@ -2,7 +2,7 @@ package com.example.rynnarriola.newsapp.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.example.rynnarriola.newsapp.base.BaseViewModel
-import com.example.rynnarriola.newsapp.data.model.Article
+import com.example.rynnarriola.newsapp.local.entity.Article
 import com.example.rynnarriola.newsapp.data.repository.NewsRepo
 import com.example.rynnarriola.newsapp.util.Constants.DEBOUNCE_TIMEOUT
 import com.example.rynnarriola.newsapp.util.Constants.MIN_SEARCH_CHAR

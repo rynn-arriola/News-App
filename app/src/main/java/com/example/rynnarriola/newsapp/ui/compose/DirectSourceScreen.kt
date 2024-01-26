@@ -14,7 +14,7 @@ import androidx.navigation.NavController
 import com.example.rynnarriola.newsapp.base.NewsTopAppBar
 import com.example.rynnarriola.newsapp.base.ShowError
 import com.example.rynnarriola.newsapp.base.ShowLoading
-import com.example.rynnarriola.newsapp.data.model.Article
+import com.example.rynnarriola.newsapp.local.entity.Article
 import com.example.rynnarriola.newsapp.util.UiState
 import com.example.rynnarriola.newsapp.viewmodel.SourceViewModel
 

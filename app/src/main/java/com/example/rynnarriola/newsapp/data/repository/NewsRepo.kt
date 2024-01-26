@@ -1,10 +1,11 @@
 package com.example.rynnarriola.newsapp.data.repository
 
 import com.example.rynnarriola.newsapp.data.api.NetworkService
-import com.example.rynnarriola.newsapp.data.model.Article
+import com.example.rynnarriola.newsapp.local.entity.Article
 import com.example.rynnarriola.newsapp.data.model.Country
 import com.example.rynnarriola.newsapp.data.model.Language
 import com.example.rynnarriola.newsapp.data.model.LanguageSource
+import com.example.rynnarriola.newsapp.data.model.toArticleEntity
 import com.example.rynnarriola.newsapp.util.Constants
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -20,7 +21,7 @@ class NewsRepo @Inject constructor(private val networkService: NetworkService) {
         return flow {
             emit(networkService.getTopHeadlines(country))
         }.map {
-            it.articles
+            it.articles.map { apiArticle ->  apiArticle.toArticleEntity() }
         }
     }
 
@@ -28,7 +29,7 @@ class NewsRepo @Inject constructor(private val networkService: NetworkService) {
         return flow {
             emit(networkService.getNewsSource(source))
         }.map {
-            it.articles
+            it.articles.map { apiArticle ->  apiArticle.toArticleEntity() }
         }
     }
 
@@ -44,7 +45,7 @@ class NewsRepo @Inject constructor(private val networkService: NetworkService) {
         return flow {
             emit(networkService.getSearchNews(query))
         }.map {
-            it.articles
+            it.articles.map { apiArticle ->  apiArticle.toArticleEntity() }
         }
     }
 

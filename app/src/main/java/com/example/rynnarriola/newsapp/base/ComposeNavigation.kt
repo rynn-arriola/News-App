@@ -27,6 +27,7 @@ import com.example.rynnarriola.newsapp.ui.compose.DirectSourceScreen
 import com.example.rynnarriola.newsapp.ui.compose.LanguageNewsScreen
 import com.example.rynnarriola.newsapp.ui.compose.LanguageScreen
 import com.example.rynnarriola.newsapp.ui.compose.NewsSourcesScreen
+import com.example.rynnarriola.newsapp.ui.compose.OfflineLineScreen
 import com.example.rynnarriola.newsapp.ui.compose.SearchScreen
 import com.example.rynnarriola.newsapp.ui.compose.TopHeadLineScreen
 
@@ -45,10 +46,15 @@ fun Navigation() {
                 navController = navController,
                 onNewsClick = { openCustomChromeTab(context, it) })
         }
+        composable(route = Screen.OfflineScreen.route) {
+            OfflineLineScreen(
+                navController = navController,
+                onNewsClick = { openCustomChromeTab(context, it) })
+        }
         composable(route = Screen.NewsSourceScreen.route) {
             NewsSourcesScreen(navController = navController)
         }
-        composable(route = Screen.CountriesScreen.route) { entry ->
+        composable(route = Screen.CountriesScreen.route) {
             CountriesScreen(navController = navController)
         }
         composable(route = Screen.LanguagesScreen.route) {
