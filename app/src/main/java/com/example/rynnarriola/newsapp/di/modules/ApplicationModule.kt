@@ -2,6 +2,7 @@ package com.example.rynnarriola.newsapp.di.modules
 
 import android.content.Context
 import androidx.room.Room
+import androidx.work.WorkManager
 import com.example.rynnarriola.newsapp.data.api.ApiKeyInterceptor
 import com.example.rynnarriola.newsapp.data.api.NetworkService
 import com.example.rynnarriola.newsapp.di.qualifiers.ApiKey
@@ -89,6 +90,12 @@ class ApplicationModule {
     @Singleton
     fun provideDatabaseService(newsDataBase: NewsDataBase): DatabaseService {
         return NewsDataBaseService(newsDataBase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideWorkManager(@ApplicationContext context: Context): WorkManager {
+        return WorkManager.getInstance(context)
     }
 
     @Provides

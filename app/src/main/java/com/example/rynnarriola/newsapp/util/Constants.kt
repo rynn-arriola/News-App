@@ -16,6 +16,7 @@ object Constants {
     const val COUNTRIES_SOURCES = "Pick A Country Source"
     const val LANGUAGE_SOURCES = "Pick A Language Source"
     const val SEARCH_NEWS = "Search News"
+    const val WORK_NAME = "newsAppScheduledWork"
 
     val COUNTRIES = listOf(
         Country("ar", "Argentina"),
