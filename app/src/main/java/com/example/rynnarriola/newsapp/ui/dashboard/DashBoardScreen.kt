@@ -1,4 +1,4 @@
-package com.example.rynnarriola.newsapp.ui.compose
+package com.example.rynnarriola.newsapp.ui.dashboard
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

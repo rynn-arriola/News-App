@@ -1,4 +1,4 @@
-package com.example.rynnarriola.newsapp.ui.compose
+package com.example.rynnarriola.newsapp.ui.topheadline
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -29,7 +29,6 @@ import com.example.rynnarriola.newsapp.data.local.entity.Article
 import com.example.rynnarriola.newsapp.data.local.entity.Source
 import com.example.rynnarriola.newsapp.util.Constants
 import com.example.rynnarriola.newsapp.util.UiState
-import com.example.rynnarriola.newsapp.ui.topheadline.TopHeadLinesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

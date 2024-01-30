@@ -20,16 +20,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.rynnarriola.newsapp.ui.compose.CountriesNewsScreen
-import com.example.rynnarriola.newsapp.ui.compose.CountriesScreen
-import com.example.rynnarriola.newsapp.ui.compose.DashboardScreen
-import com.example.rynnarriola.newsapp.ui.compose.DirectSourceScreen
-import com.example.rynnarriola.newsapp.ui.compose.LanguageNewsScreen
-import com.example.rynnarriola.newsapp.ui.compose.LanguageScreen
-import com.example.rynnarriola.newsapp.ui.compose.NewsSourcesScreen
-import com.example.rynnarriola.newsapp.ui.compose.OfflineLineScreen
-import com.example.rynnarriola.newsapp.ui.compose.SearchScreen
-import com.example.rynnarriola.newsapp.ui.compose.TopHeadLineScreen
+import com.example.rynnarriola.newsapp.ui.countries.CountriesNewsScreen
+import com.example.rynnarriola.newsapp.ui.countries.CountriesScreen
+import com.example.rynnarriola.newsapp.ui.dashboard.DashboardScreen
+import com.example.rynnarriola.newsapp.ui.newssource.DirectSourceScreen
+import com.example.rynnarriola.newsapp.ui.languages.LanguageNewsScreen
+import com.example.rynnarriola.newsapp.ui.languages.LanguageScreen
+import com.example.rynnarriola.newsapp.ui.newssource.NewsSourcesScreen
+import com.example.rynnarriola.newsapp.ui.offline.OfflineLineScreen
+import com.example.rynnarriola.newsapp.ui.search.SearchScreen
+import com.example.rynnarriola.newsapp.ui.topheadline.TopHeadLineScreen
 
 @Composable
 fun Navigation() {

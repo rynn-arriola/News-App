@@ -1,4 +1,4 @@
-package com.example.rynnarriola.newsapp.ui.compose
+package com.example.rynnarriola.newsapp.ui.newssource
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.rynnarriola.newsapp.ui.base.NewsTopAppBar
 import com.example.rynnarriola.newsapp.ui.base.Screen
+import com.example.rynnarriola.newsapp.ui.dashboard.ButtonComponent
 import com.example.rynnarriola.newsapp.util.Constants
 
 @OptIn(ExperimentalMaterial3Api::class)

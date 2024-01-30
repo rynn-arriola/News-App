@@ -1,4 +1,4 @@
-package com.example.rynnarriola.newsapp.ui.compose
+package com.example.rynnarriola.newsapp.ui.countries
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,7 +30,6 @@ import com.example.rynnarriola.newsapp.ui.base.ShowLoading
 import com.example.rynnarriola.newsapp.data.model.Country
 import com.example.rynnarriola.newsapp.util.Constants
 import com.example.rynnarriola.newsapp.util.UiState
-import com.example.rynnarriola.newsapp.ui.countries.CountriesViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)

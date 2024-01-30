@@ -1,4 +1,4 @@
-package com.example.rynnarriola.newsapp.ui.compose
+package com.example.rynnarriola.newsapp.ui.search
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -22,9 +22,9 @@ import com.example.rynnarriola.newsapp.ui.base.NewsTopAppBar
 import com.example.rynnarriola.newsapp.ui.base.ShowError
 import com.example.rynnarriola.newsapp.ui.base.ShowLoading
 import com.example.rynnarriola.newsapp.data.local.entity.Article
+import com.example.rynnarriola.newsapp.ui.topheadline.ArticleList
 import com.example.rynnarriola.newsapp.util.Constants
 import com.example.rynnarriola.newsapp.util.UiState
-import com.example.rynnarriola.newsapp.ui.search.SearchViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

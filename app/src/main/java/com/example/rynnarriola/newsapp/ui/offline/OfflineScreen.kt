@@ -1,4 +1,4 @@
-package com.example.rynnarriola.newsapp.ui.compose
+package com.example.rynnarriola.newsapp.ui.offline
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -8,8 +8,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.rynnarriola.newsapp.ui.base.NewsTopAppBar
+import com.example.rynnarriola.newsapp.ui.topheadline.TopHeadLinesContent
 import com.example.rynnarriola.newsapp.util.Constants
-import com.example.rynnarriola.newsapp.ui.offline.OfflineArticleViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

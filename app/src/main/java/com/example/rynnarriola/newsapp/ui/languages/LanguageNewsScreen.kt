@@ -1,4 +1,4 @@
-package com.example.rynnarriola.newsapp.ui.compose
+package com.example.rynnarriola.newsapp.ui.languages
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -25,8 +25,9 @@ import com.example.rynnarriola.newsapp.ui.base.NewsTopAppBar
 import com.example.rynnarriola.newsapp.ui.base.ShowError
 import com.example.rynnarriola.newsapp.ui.base.ShowLoading
 import com.example.rynnarriola.newsapp.data.model.LanguageSource
+import com.example.rynnarriola.newsapp.ui.topheadline.DescriptionText
+import com.example.rynnarriola.newsapp.ui.topheadline.TitleText
 import com.example.rynnarriola.newsapp.util.UiState
-import com.example.rynnarriola.newsapp.ui.languages.LanguageNewsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

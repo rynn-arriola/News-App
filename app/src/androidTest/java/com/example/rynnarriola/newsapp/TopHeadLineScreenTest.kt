@@ -12,7 +12,7 @@ import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.unit.dp
 import com.example.rynnarriola.newsapp.data.local.entity.Article
 import com.example.rynnarriola.newsapp.data.local.entity.Source
-import com.example.rynnarriola.newsapp.ui.compose.TopHeadLinesContent
+import com.example.rynnarriola.newsapp.ui.topheadline.TopHeadLinesContent
 import com.example.rynnarriola.newsapp.util.UiState
 import org.junit.Rule
 import org.junit.Test
