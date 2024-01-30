@@ -6,7 +6,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.rynnarriola.newsapp.data.api.NetworkService
 import com.example.rynnarriola.newsapp.data.model.toArticleEntity
-import com.example.rynnarriola.newsapp.local.DatabaseService
+import com.example.rynnarriola.newsapp.data.local.DatabaseService
 import com.example.rynnarriola.newsapp.util.Constants.COUNTRY
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject

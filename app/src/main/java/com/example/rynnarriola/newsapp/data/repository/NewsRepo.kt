@@ -1,7 +1,7 @@
 package com.example.rynnarriola.newsapp.data.repository
 
 import com.example.rynnarriola.newsapp.data.api.NetworkService
-import com.example.rynnarriola.newsapp.local.entity.Article
+import com.example.rynnarriola.newsapp.data.local.entity.Article
 import com.example.rynnarriola.newsapp.data.model.Country
 import com.example.rynnarriola.newsapp.data.model.Language
 import com.example.rynnarriola.newsapp.data.model.LanguageSource

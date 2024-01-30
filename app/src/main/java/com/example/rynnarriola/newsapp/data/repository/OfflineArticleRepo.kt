@@ -1,9 +1,9 @@
 package com.example.rynnarriola.newsapp.data.repository
 
 import com.example.rynnarriola.newsapp.data.api.NetworkService
-import com.example.rynnarriola.newsapp.local.entity.Article
+import com.example.rynnarriola.newsapp.data.local.entity.Article
 import com.example.rynnarriola.newsapp.data.model.toArticleEntity
-import com.example.rynnarriola.newsapp.local.DatabaseService
+import com.example.rynnarriola.newsapp.data.local.DatabaseService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapConcat

@@ -1,6 +1,6 @@
 package com.example.rynnarriola.newsapp.data.model
 
-import com.example.rynnarriola.newsapp.local.entity.Article
+import com.example.rynnarriola.newsapp.data.local.entity.Article
 import com.google.gson.annotations.SerializedName
 
 data class ApiArticle(

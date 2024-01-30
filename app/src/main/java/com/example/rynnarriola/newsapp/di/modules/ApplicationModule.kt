@@ -8,9 +8,9 @@ import com.example.rynnarriola.newsapp.data.api.NetworkService
 import com.example.rynnarriola.newsapp.di.qualifiers.ApiKey
 import com.example.rynnarriola.newsapp.di.qualifiers.BaseUrl
 import com.example.rynnarriola.newsapp.di.qualifiers.DatabaseName
-import com.example.rynnarriola.newsapp.local.DatabaseService
-import com.example.rynnarriola.newsapp.local.NewsDataBase
-import com.example.rynnarriola.newsapp.local.NewsDataBaseService
+import com.example.rynnarriola.newsapp.data.local.DatabaseService
+import com.example.rynnarriola.newsapp.data.local.NewsDataBase
+import com.example.rynnarriola.newsapp.data.local.NewsDataBaseService
 import com.example.rynnarriola.newsapp.util.Constants
 import com.example.rynnarriola.newsapp.util.DefaultDispatcherProvider
 import com.example.rynnarriola.newsapp.util.DefaultNetworkHelper

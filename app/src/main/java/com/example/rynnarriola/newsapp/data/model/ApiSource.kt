@@ -1,6 +1,6 @@
 package com.example.rynnarriola.newsapp.data.model
 
-import com.example.rynnarriola.newsapp.local.entity.Source
+import com.example.rynnarriola.newsapp.data.local.entity.Source
 import com.google.gson.annotations.SerializedName
 
 data class ApiSource(
