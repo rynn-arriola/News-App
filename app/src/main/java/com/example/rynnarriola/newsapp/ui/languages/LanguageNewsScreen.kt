@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -59,8 +60,11 @@ private fun LanguageNewsContent(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    if (languageCode != null) {
-        viewModel.fetchNews(languageCode)
+    LaunchedEffect(true ){
+        if (languageCode != null) {
+            viewModel.fetchNews(languageCode)
+        }
+
     }
 
     Column(modifier = Modifier.padding(padding)){

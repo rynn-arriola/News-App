@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -47,8 +48,11 @@ private fun CountryNewsContent(
     onNewsClick: (url: String) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    if (countryCode != null) {
-        viewModel.fetchNews(countryCode)
+
+    LaunchedEffect(true) {
+        if (countryCode != null) {
+            viewModel.fetchNews(countryCode)
+        }
     }
 
     Column(modifier = androidx.compose.ui.Modifier.padding(padding)) {
