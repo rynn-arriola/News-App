@@ -50,6 +50,9 @@ fun DashboardScreen(navController: NavController) {
                 ButtonComponent(text = "Offline First Implementation") {
                     navController.navigate(Screen.OfflineScreen.route)
                 }
+                ButtonComponent(text = "Paging Implementation") {
+                    navController.navigate(Screen.PagingScreen.route)
+                }
                 Spacer(modifier = Modifier.height(16.dp))
                 ButtonComponent(text = "News Sources") {
                     navController.navigate(Screen.NewsSourceScreen.route)

@@ -17,6 +17,8 @@ object Constants {
     const val LANGUAGE_SOURCES = "Pick A Language Source"
     const val SEARCH_NEWS = "Search News"
     const val WORK_NAME = "newsAppScheduledWork"
+    const val INITIAL_PAGE = 1
+    const val PAGE_SIZE = 10
 
     val COUNTRIES = listOf(
         Country("ar", "Argentina"),

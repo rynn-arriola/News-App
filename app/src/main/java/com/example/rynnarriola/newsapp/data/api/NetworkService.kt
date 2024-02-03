@@ -2,9 +2,7 @@ package com.example.rynnarriola.newsapp.data.api
 
 import com.example.rynnarriola.newsapp.data.model.LanguageNewsResponse
 import com.example.rynnarriola.newsapp.data.model.TopHeadlinesResponse
-import com.example.rynnarriola.newsapp.util.Constants.API_KEY
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface NetworkService {
@@ -24,5 +22,12 @@ interface NetworkService {
 
     @GET("everything")
     suspend fun getSearchNews(@Query("q") query: String): TopHeadlinesResponse
+
+    @GET("top-headlines")
+    suspend fun getPaginatedData(
+        @Query("country") country: String,
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int
+    ): TopHeadlinesResponse
 
 }

@@ -28,6 +28,7 @@ import com.example.rynnarriola.newsapp.ui.languages.LanguageNewsScreen
 import com.example.rynnarriola.newsapp.ui.languages.LanguageScreen
 import com.example.rynnarriola.newsapp.ui.newssource.NewsSourcesScreen
 import com.example.rynnarriola.newsapp.ui.offline.OfflineLineScreen
+import com.example.rynnarriola.newsapp.ui.pagination.PagingScreen
 import com.example.rynnarriola.newsapp.ui.search.SearchScreen
 import com.example.rynnarriola.newsapp.ui.topheadline.TopHeadLineScreen
 
@@ -48,6 +49,11 @@ fun Navigation() {
         }
         composable(route = Screen.OfflineScreen.route) {
             OfflineLineScreen(
+                navController = navController,
+                onNewsClick = { openCustomChromeTab(context, it) })
+        }
+        composable(route = Screen.PagingScreen.route) {
+            PagingScreen(
                 navController = navController,
                 onNewsClick = { openCustomChromeTab(context, it) })
         }
