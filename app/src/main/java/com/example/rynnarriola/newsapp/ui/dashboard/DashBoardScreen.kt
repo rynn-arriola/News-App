@@ -58,15 +58,15 @@ fun DashboardScreen(navController: NavController) {
                     navController.navigate(Screen.NewsSourceScreen.route)
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                ButtonComponent(text = "Countries") {
+                ButtonComponent(text = "News By Countries") {
                     navController.navigate(Screen.CountriesScreen.route)
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                ButtonComponent(text = "Languages") {
+                ButtonComponent(text = "News by Languages") {
                     navController.navigate(Screen.LanguagesScreen.route)
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                ButtonComponent(text = "Search") {
+                ButtonComponent(text = "Search News") {
                     navController.navigate(Screen.SearchScreen.route)
                 }
             }
