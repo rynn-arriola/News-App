@@ -1,8 +1,8 @@
 <h1 align="center" id="title">News Application</h1>
 
-<p align="center"><img src="https://socialify.git.ci/rynn-arriola/Mobile-Project/image?description=1&amp;descriptionEditable=News%20App&amp;font=KoHo&amp;forks=1&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Circuit%20Board&amp;pulls=1&amp;stargazers=1&amp;theme=Dark" alt="project-image"></p>
+<p align="center"><img src="https://socialify.git.ci/rynn-arriola/News-App/image?description=1&forks=1&language=1&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark"></p>
 
-  
+
   
 <h2>🧐 Features</h2>
 
@@ -95,9 +95,7 @@ Technologies used in the project:
                 │
                 ├───di
                 │   ├───modules
-                │   │       📄 ActivityModule.kt
                 │   │       📄 ApplicationModule.kt
-                │   │       📄 FragmentModule.kt
                 │   │
                 │   └───qualifiers
                 │           📄 Qualifiers.kt
