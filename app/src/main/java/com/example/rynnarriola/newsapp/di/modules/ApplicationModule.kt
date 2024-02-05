@@ -15,7 +15,9 @@ import com.example.rynnarriola.newsapp.util.Constants
 import com.example.rynnarriola.newsapp.util.DefaultDispatcherProvider
 import com.example.rynnarriola.newsapp.util.DefaultNetworkHelper
 import com.example.rynnarriola.newsapp.util.DispatcherProvider
+import com.example.rynnarriola.newsapp.util.Logger
 import com.example.rynnarriola.newsapp.util.NetworkHelper
+import com.example.rynnarriola.newsapp.util.NewsLogger
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -62,6 +64,10 @@ class ApplicationModule {
     @Provides
     @Singleton
     fun provideDispatcherProvider(): DispatcherProvider = DefaultDispatcherProvider()
+
+    @Provides
+    @Singleton
+    fun provideLogger(): Logger = NewsLogger()
 
     @Provides
     @Singleton

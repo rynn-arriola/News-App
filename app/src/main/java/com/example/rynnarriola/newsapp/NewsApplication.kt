@@ -1,7 +1,6 @@
 package com.example.rynnarriola.newsapp
 
 import android.app.Application
-import android.util.Log
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.Constraints
@@ -11,6 +10,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.example.rynnarriola.newsapp.util.Constants.WORK_NAME
+import com.example.rynnarriola.newsapp.util.Logger
 import com.example.rynnarriola.newsapp.util.calculateInitialDelay
 import com.example.rynnarriola.newsapp.worker.NewsWorker
 import com.example.rynnarriola.newsapp.worker.WorkStatusObserver
@@ -27,6 +27,9 @@ class NewsApplication : Application(), Configuration.Provider {
 
     @Inject
     lateinit var workManager: WorkManager
+
+    @Inject
+    lateinit var newsLogger: Logger
 
 
     override fun onCreate() {
@@ -69,22 +72,22 @@ class NewsApplication : Application(), Configuration.Provider {
                 when (workInfo.state) {
                     WorkInfo.State.ENQUEUED -> {
                         val tagName = workInfo.tags.firstOrNull() ?: "UnknownTag"
-                        Log.d("WorkStatus", "Work with tag $tagName is ENQUEUED")
+                        newsLogger.log("WorkStatus", "Work with tag $tagName is ENQUEUED")
                     }
 
                     WorkInfo.State.RUNNING -> {
                         val tagName = workInfo.tags.firstOrNull() ?: "UnknownTag"
-                        Log.d("WorkStatus", "Work with tag $tagName is RUNNING")
+                        newsLogger.log("WorkStatus", "Work with tag $tagName is RUNNING")
                     }
 
                     WorkInfo.State.SUCCEEDED -> {
                         val tagName = workInfo.tags.firstOrNull() ?: "UnknownTag"
-                        Log.d("WorkStatus", "Work with tag $tagName has SUCCEEDED")
+                        newsLogger.log("WorkStatus", "Work with tag $tagName has SUCCEEDED")
                     }
 
                     WorkInfo.State.FAILED -> {
                         val tagName = workInfo.tags.firstOrNull() ?: "UnknownTag"
-                        Log.d("WorkStatus", "Work with tag $tagName has FAILED")
+                        newsLogger.log("WorkStatus", "Work with tag $tagName has FAILED")
                     }
 
                     else -> {}
